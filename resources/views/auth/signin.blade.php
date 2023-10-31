@@ -26,7 +26,7 @@
                                     </div>
                                   </div>
                                 <button class="btn btn-success btn-block" type="submit">
-                                    <i class="fas fa-sign-in-alt mr-2"></i>Signin
+                                    <i class="fas fa-sign-in-alt mr-2"></i>Masuk
                                 </button>
                             </form>
                         </div>
@@ -68,7 +68,7 @@ $('#SigninForm').submit(function(e){
                 clearInterval(RedirectInterval);
                 window.location.href = response.redirect;
             }
-            $("#RedirectCountdown").text(TimeLeft + ' seconds.');
+            $("#RedirectCountdown").text(TimeLeft);
             TimeLeft -= 1;
             }, 1000);
         },

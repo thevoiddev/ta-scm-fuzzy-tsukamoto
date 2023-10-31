@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+use App\Models\Agent;
+use App\Models\Distributor;
+use App\Models\Producer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -26,7 +30,7 @@ class AuthController extends Controller
     public function signin(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'username' => 'required|exists:users,username',
+            'username' => 'required|string',
             'password' => 'required|string'
         ]);
 
@@ -37,17 +41,22 @@ class AuthController extends Controller
             ], 400);
         }
 
-        $user = User::where('username', $request->username)->first();
+        $user = Admin::where('username', $request->username)->first();
 
-        if(!Hash::check($request->password, $user->password)){
+        if(!$user) $user = Producer::where('username', $request->username)->first();
+        if(!$user) $user = Distributor::where('username', $request->username)->first();
+        if(!$user) $user = Agent::where('username', $request->username)->first();
+
+        if(!$user || !Hash::check($request->password, $user->password)){
             return response()->json([
                 'status'  => false,
-                'message' => 'Username or password invalid.'
+                'message' => 'Username atau password salah.'
             ], 400);
         }
 
         session()->put('user', [
             'id' => Crypt::encryptString($user->id),
+            'role' => $user->role,
             'username' => $user->username,
             'email' => $user->email,
             'name' => $user->name
@@ -55,7 +64,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status'   => true,
-            'message'  => 'Signin successful, you will be redirected in <span id="RedirectCountdown">5<span> seconds.',
+            'message'  => 'Masuk berhasil, kamu akan dialihkan dalam <span id="RedirectCountdown">5</span> detik.',
             'redirect' => route('dashboard.index')
         ], 200);
     }

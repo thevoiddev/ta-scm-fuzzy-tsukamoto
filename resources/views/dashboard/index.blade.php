@@ -14,7 +14,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Artikel</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $article }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-rss-square fa-2x text-gray-300"></i>
@@ -31,7 +31,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Portfolio</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $portfolio }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-newspaper fa-2x text-gray-300"></i>

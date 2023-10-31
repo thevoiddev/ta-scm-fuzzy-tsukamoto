@@ -2,16 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
-use App\Models\ArticlesCategory;
-use App\Models\Client;
-use App\Models\Faq;
-use App\Models\Gallery;
-use App\Models\PortfoliosCategory;
-use App\Models\Service;
-use App\Models\Slider;
-use App\Models\SocialMedia;
-use App\Models\User;
+use App\Models\Admin;
+use App\Models\Agent;
+use App\Models\Distributor;
+use App\Models\Producer;
 use App\Models\WebInformation;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -26,65 +20,63 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::insert([
+        Admin::insert([
             [
-                'role'       => 'Administrator',
                 'username'   => 'admin',
                 'email'      => 'admin@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Ilham Fadli',
                 'created_at' => Carbon::now()
-            ],
+            ]
+        ]);
+
+        Producer::insert([
             [
-                'role'       => 'Produsen',
-                'username'   => 'produsen1',
-                'email'      => 'produsen1@website.com',
+                'username'   => 'producer1',
+                'email'      => 'producer1@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Indofood',
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Produsen',
-                'username'   => 'produsen2',
-                'email'      => 'produsen2@website.com',
+                'username'   => 'producer2',
+                'email'      => 'producer2@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Nestle',
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Produsen',
-                'username'   => 'produsen3',
-                'email'      => 'produsen3@website.com',
+                'username'   => 'producer3',
+                'email'      => 'producer3@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Garudafood',
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Produsen',
-                'username'   => 'produsen4',
-                'email'      => 'produsen4@website.com',
+                'username'   => 'producer4',
+                'email'      => 'producer4@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Wings',
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Produsen',
-                'username'   => 'produsen5',
-                'email'      => 'produsen5@website.com',
+                'username'   => 'producer5',
+                'email'      => 'producer5@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Roma',
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Produsen',
-                'username'   => 'produsen6',
-                'email'      => 'produsen6@website.com',
+                'username'   => 'producer6',
+                'email'      => 'producer6@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Sidomuncul',
                 'created_at' => Carbon::now()
-            ],
+            ]
+        ]);
+
+        Distributor::insert([
             [
-                'role'       => 'Distributor',
                 'username'   => 'distributor1',
                 'email'      => 'distributor1@website.com',
                 'password'   => Hash::make('admin2023!@'),
@@ -92,7 +84,6 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Distributor',
                 'username'   => 'distributor2',
                 'email'      => 'distributor2@website.com',
                 'password'   => Hash::make('admin2023!@'),
@@ -100,11 +91,34 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],
             [
-                'role'       => 'Distributor',
                 'username'   => 'distributor3',
                 'email'      => 'distributor3@website.com',
                 'password'   => Hash::make('admin2023!@'),
                 'name'       => 'Si Cepat',
+                'created_at' => Carbon::now()
+            ]
+        ]);
+
+        Agent::insert([
+            [
+                'username'   => 'agent1',
+                'email'      => 'agent1@website.com',
+                'password'   => Hash::make('admin2023!@'),
+                'name'       => 'Toko Abadi Kemuning',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'username'   => 'agent2',
+                'email'      => 'agent2@website.com',
+                'password'   => Hash::make('admin2023!@'),
+                'name'       => 'Toko Makmur Sekip',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'username'   => 'agent3',
+                'email'      => 'agent3@website.com',
+                'password'   => Hash::make('admin2023!@'),
+                'name'       => 'Toko Jaya Sukabangun',
                 'created_at' => Carbon::now()
             ]
         ]);

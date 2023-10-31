@@ -17,12 +17,8 @@ class DashboardController extends Controller
         $main_content = $this->main_content;
         $title = "$main_content -  $web_information->title";
 
-        $article = Article::count();
-        $portfolio = Portfolio::count();
-
         return view('dashboard.index', compact(
             'web_information', 'sidebar_menu', 'main_content', 'title',
-            'article', 'portfolio'
         ));
     }
 }

@@ -26,7 +26,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('user')['name'] }}</span>
+                                <p class="pt-3 text-right" style="line-height: 1rem">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><b>{{ session('user')['name'] }}</b></span><br>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('user')['role'] }}</span>
+                                </p>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('images/icons/user.png') }}">
                             </a>
