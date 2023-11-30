@@ -6,6 +6,10 @@ use App\Models\Admin;
 use App\Models\Agent;
 use App\Models\Distributor;
 use App\Models\Producer;
+use App\Models\User;
+use App\Models\UserBusiness;
+use App\Models\UserOffice;
+use App\Models\UserRole;
 use App\Models\WebInformation;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -20,124 +24,291 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Admin::insert([
+        UserRole::insert([
             [
-                'username'   => 'admin',
-                'email'      => 'admin@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Ilham Fadli',
-                'created_at' => Carbon::now()
+                'name' => 'Super Admin',
+                'slug' => 'super-admin'
+            ],
+            [
+                'name' => 'Pemilik Bisnis',
+                'slug' => 'pemilik-bisnis'
+            ],
+            [
+                'name' => 'Kasir Toko',
+                'slug' => 'kasir-toko'
+            ],
+            [
+                'name' => 'Petugas Gudang',
+                'slug' => 'petugas-gudang'
             ]
         ]);
 
-        Producer::insert([
+        UserBusiness::insert([
             [
-                'username'   => 'producer1',
-                'email'      => 'producer1@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Indofood',
-                'created_at' => Carbon::now()
+                'name' => 'Indofood',
+                'slug' => 'indofood',
+                'role' => 'PRODUSEN'
             ],
             [
-                'username'   => 'producer2',
-                'email'      => 'producer2@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Nestle',
-                'created_at' => Carbon::now()
+                'name' => 'Nestle',
+                'slug' => 'nestle',
+                'role' => 'PRODUSEN'
             ],
             [
-                'username'   => 'producer3',
-                'email'      => 'producer3@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Garudafood',
-                'created_at' => Carbon::now()
+                'name' => 'Garuda Food',
+                'slug' => 'garudafood',
+                'role' => 'PRODUSEN'
             ],
             [
-                'username'   => 'producer4',
-                'email'      => 'producer4@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Wings',
-                'created_at' => Carbon::now()
+                'name' => 'Roma',
+                'slug' => 'roma',
+                'role' => 'PRODUSEN'
             ],
             [
-                'username'   => 'producer5',
-                'email'      => 'producer5@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Roma',
-                'created_at' => Carbon::now()
+                'name' => 'Sidomuncul',
+                'slug' => 'sidomuncul',
+                'role' => 'PRODUSEN'
             ],
             [
-                'username'   => 'producer6',
-                'email'      => 'producer6@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Sidomuncul',
-                'created_at' => Carbon::now()
+                'name' => 'Si Cepat',
+                'slug' => 'sicepat',
+                'role' => 'DISTIBUTOR'
+            ],
+            [
+                'name' => 'JNE',
+                'slug' => 'jne',
+                'role' => 'DISTIBUTOR'
+            ],
+            [
+                'name' => 'JNT',
+                'slug' => 'jnt',
+                'role' => 'DISTIBUTOR'
+            ],
+            [
+                'name' => 'Toko Sinar Jaya',
+                'slug' => 'toko-sinar-jaya',
+                'role' => 'AGEN'
+            ],
+            [
+                'name' => 'Toko Abadi Makmur',
+                'slug' => 'toko-abadi-makmur',
+                'role' => 'AGEN'
+            ],
+            [
+                'name' => 'Toko Bukit Besar',
+                'slug' => 'toko-bukit-besar',
+                'role' => 'AGEN'
             ]
         ]);
 
-        Distributor::insert([
+        UserOffice::insert([
             [
-                'username'   => 'distributor1',
-                'email'      => 'distributor1@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'J&T',
-                'created_at' => Carbon::now()
+                'business_id' => 10,
+                'name' => 'Toko Sinar Jaya (Kemuning)',
+                'slug' => 'toko-sinar-jaya-kemuning',
+                'address' => 'Jalan basuki rahmat, kemuning'
             ],
             [
-                'username'   => 'distributor2',
-                'email'      => 'distributor2@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'JNE',
-                'created_at' => Carbon::now()
+                'business_id' => 10,
+                'name' => 'Toko Sinar Jaya (Demang)',
+                'slug' => 'toko-sinar-jaya-demang',
+                'address' => 'Jalan demang lebar daun'
             ],
             [
-                'username'   => 'distributor3',
-                'email'      => 'distributor3@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Si Cepat',
-                'created_at' => Carbon::now()
+                'business_id' => 10,
+                'name' => 'Gudang Sinar Jaya (Kemuning)',
+                'slug' => 'gudang-sinar-jaya-kemuning',
+                'address' => 'Jalan basuki rahmat, kemuning'
+            ],
+            [
+                'business_id' => 10,
+                'name' => 'Gudang Sinar Jaya (Demang)',
+                'slug' => 'gudang-sinar-jaya-demang',
+                'address' => 'Jalan demang lebar daun'
+            ],
+            [
+                'business_id' => 11,
+                'name' => 'Toko Abadi Makmur (Pasar 16)',
+                'slug' => 'toko-sinar-jaya-pasar-16',
+                'address' => 'Jalan pasar 16'
+            ],
+            [
+                'business_id' => 11,
+                'name' => 'Gudang Abadi Makmur (Pasar 16)',
+                'slug' => 'gudang-sinar-jaya-pasar-16',
+                'address' => 'Jalan pasar 16'
+            ],
+            [
+                'business_id' => 12,
+                'name' => 'Toko Bukit Besar (Bukit Besar)',
+                'slug' => 'toko-sinar-jaya-bukit-besar',
+                'address' => 'Jalan bukit besar'
+            ],
+            [
+                'business_id' => 12,
+                'name' => 'Gudang Bukit Besar (Bukit Besar)',
+                'slug' => 'gudang-sinar-jaya-bukit-besar',
+                'address' => 'Jalan bukit besar'
             ]
         ]);
 
-        Agent::insert([
+        User::insert([
             [
-                'username'   => 'agent1',
-                'email'      => 'agent1@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Toko Abadi Kemuning',
-                'created_at' => Carbon::now()
+                'role_id' => 1,
+                'ref_id' => null,
+                'ref_type' => null,
+                'name' => 'Ilham Fadli',
+                'slug' => 'ilham-fadli',
+                'email' => 'ilhampadli19@gmail.com',
+                'password' => Hash::make('12345678')
             ],
             [
-                'username'   => 'agent2',
-                'email'      => 'agent2@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Toko Makmur Sekip',
-                'created_at' => Carbon::now()
+                'role_id' => 2,
+                'ref_id' => 1,
+                'ref_type' => UserBusiness::class,
+                'name' => 'Joko Saputra',
+                'slug' => 'joko-saputra',
+                'email' => 'joko_saputra@gmail.com',
+                'password' => Hash::make('12345678')
             ],
             [
-                'username'   => 'agent3',
-                'email'      => 'agent3@website.com',
-                'password'   => Hash::make('admin2023!@'),
-                'name'       => 'Toko Jaya Sukabangun',
-                'created_at' => Carbon::now()
+                'role_id' => 3,
+                'ref_id' => 1,
+                'ref_type' => UserOffice::class,
+                'name' => 'Tina Fitri',
+                'slug' => 'tina-fitri',
+                'email' => 'tina_fitri@gmail.com',
+                'password' => Hash::make('12345678')
+            ],
+            [
+                'role_id' => 4,
+                'ref_id' => 1,
+                'ref_type' => UserOffice::class,
+                'name' => 'Valentina Putri',
+                'slug' => 'valentina-putri',
+                'email' => 'valentina_putri@gmail.com',
+                'password' => Hash::make('12345678')
             ]
         ]);
 
-        WebInformation::insert([
-            [
-                'favicon'          => '2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.png',
-                'logo_main'        => '1480de65dc58d0dfd45e755f1fe9e483f3d09da5.png',
-                'logo_secondary'   => '34698e2d6c4532d215df03dfba85aaf15432555e.png',
-                'title'            => 'Supply Chain Management',
-                'description'      => 'Ini merupakan proyek tugas akhir Ilham Fadli, mahasiswa program studi Sistem Komputer, Universitas Sriwijaya angkatan 2018.',
-                'long_description' => 'Ini merupakan proyek tugas akhir Ilham Fadli, mahasiswa program studi Sistem Komputer, Universitas Sriwijaya angkatan 2018.',
-                'keywords'         => json_encode(['scm', 'fuzzy', 'tsukamoto', 'rfid']),
-                'author'           => 'Ilham Fadli',
-                'email'            => 'ilhampadli19@gmail.com',
-                'phone'            => '-',
-                'created_by'       => 1,
-                'created_at'       => Carbon::now()
-            ]
-        ]);
+        // Admin::insert([
+        //     [
+        //         'username'   => 'admin',
+        //         'email'      => 'admin@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Ilham Fadli',
+        //         'created_at' => Carbon::now()
+        //     ]
+        // ]);
+
+        // Producer::insert([
+        //     [
+        //         'username'   => 'producer1',
+        //         'email'      => 'producer1@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Indofood',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'producer2',
+        //         'email'      => 'producer2@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Nestle',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'producer3',
+        //         'email'      => 'producer3@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Garudafood',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'producer4',
+        //         'email'      => 'producer4@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Wings',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'producer5',
+        //         'email'      => 'producer5@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Roma',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'producer6',
+        //         'email'      => 'producer6@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Sidomuncul',
+        //         'created_at' => Carbon::now()
+        //     ]
+        // ]);
+
+        // Distributor::insert([
+        //     [
+        //         'username'   => 'distributor1',
+        //         'email'      => 'distributor1@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'J&T',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'distributor2',
+        //         'email'      => 'distributor2@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'JNE',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'distributor3',
+        //         'email'      => 'distributor3@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Si Cepat',
+        //         'created_at' => Carbon::now()
+        //     ]
+        // ]);
+
+        // Agent::insert([
+        //     [
+        //         'username'   => 'agent1',
+        //         'email'      => 'agent1@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Toko Abadi Kemuning',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'agent2',
+        //         'email'      => 'agent2@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Toko Makmur Sekip',
+        //         'created_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'username'   => 'agent3',
+        //         'email'      => 'agent3@website.com',
+        //         'password'   => Hash::make('admin2023!@'),
+        //         'name'       => 'Toko Jaya Sukabangun',
+        //         'created_at' => Carbon::now()
+        //     ]
+        // ]);
+
+        // WebInformation::insert([
+        //     [
+        //         'favicon'          => '2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.png',
+        //         'logo_main'        => '1480de65dc58d0dfd45e755f1fe9e483f3d09da5.png',
+        //         'logo_secondary'   => '34698e2d6c4532d215df03dfba85aaf15432555e.png',
+        //         'title'            => 'Supply Chain Management',
+        //         'description'      => 'Ini merupakan proyek tugas akhir Ilham Fadli, mahasiswa program studi Sistem Komputer, Universitas Sriwijaya angkatan 2018.',
+        //         'long_description' => 'Ini merupakan proyek tugas akhir Ilham Fadli, mahasiswa program studi Sistem Komputer, Universitas Sriwijaya angkatan 2018.',
+        //         'keywords'         => json_encode(['scm', 'fuzzy', 'tsukamoto', 'rfid']),
+        //         'author'           => 'Ilham Fadli',
+        //         'email'            => 'ilhampadli19@gmail.com',
+        //         'phone'            => '-',
+        //         'created_by'       => 1,
+        //         'created_at'       => Carbon::now()
+        //     ]
+        // ]);
     }
 }
