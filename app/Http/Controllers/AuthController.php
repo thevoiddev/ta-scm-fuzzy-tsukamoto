@@ -41,11 +41,7 @@ class AuthController extends Controller
             ], 400);
         }
 
-        $user = Admin::where('username', $request->username)->first();
-
-        if(!$user) $user = Producer::where('username', $request->username)->first();
-        if(!$user) $user = Distributor::where('username', $request->username)->first();
-        if(!$user) $user = Agent::where('username', $request->username)->first();
+        $user = User::with('role', 'userable')->where('username', $request->username)->first();
 
         if(!$user || !Hash::check($request->password, $user->password)){
             return response()->json([
@@ -54,13 +50,11 @@ class AuthController extends Controller
             ], 400);
         }
 
-        session()->put('user', [
-            'id' => Crypt::encryptString($user->id),
-            'role' => $user->role,
-            'username' => $user->username,
-            'email' => $user->email,
-            'name' => $user->name
-        ]);
+        if($user->userable){
+            $user->business = $user->userable->business;
+        }
+
+        session()->put('user', $user);
 
         return response()->json([
             'status'   => true,

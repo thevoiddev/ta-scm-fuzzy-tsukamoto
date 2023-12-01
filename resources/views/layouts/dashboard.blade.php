@@ -28,7 +28,16 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <p class="pt-3 text-right" style="line-height: 1rem">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><b>{{ session('user')['name'] }}</b></span><br>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('user')['role'] }}</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        {{ session('user')['role']['name'] }}
+                                        @if(isset(session('user')['business']))
+                                            |
+                                            {{ session('user')['business']['name'] }}
+                                        @elseif(isset(session('user')['userable']['role']))
+                                            |
+                                            {{ session('user')['userable']['name'] }}
+                                        @endif
+                                    </span>
                                 </p>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('images/icons/user.png') }}">

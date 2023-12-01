@@ -64,12 +64,12 @@ $('#SigninForm').submit(function(e){
 
             var TimeLeft = 4;
             var RedirectInterval = setInterval(function(){
-            if(TimeLeft <= 0){
-                clearInterval(RedirectInterval);
-                window.location.href = response.redirect;
-            }
-            $("#RedirectCountdown").text(TimeLeft);
-            TimeLeft -= 1;
+                if(TimeLeft <= 0){
+                    clearInterval(RedirectInterval);
+                    window.location.href = response.redirect;
+                }
+                $("#RedirectCountdown").text(TimeLeft);
+                TimeLeft -= 1;
             }, 1000);
         },
         error : function(request,error)
