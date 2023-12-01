@@ -8,7 +8,7 @@
     <li class="nav-item {{ $sidebar_menu !== 'dashboard' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('dashboard.index') }}">
             <i class="fas fa-tachometer-alt"></i>
-            <span>Dashboarddd</span></a>
+            <span>Dashboard</span></a>
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
@@ -18,5 +18,15 @@
         <a class="nav-link py-2" href="{{ route('web_information.index') }}">
             <i class="fas fa-info-circle"></i>
             <span>Web Information</span></a>
+    </li>
+    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+            <i class="fas fa-building"></i>
+            <span>Bisnis</span></a>
+    </li>
+    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+            <i class="fas fa-users"></i>
+            <span>Pengguna</span></a>
     </li>
 </ul>

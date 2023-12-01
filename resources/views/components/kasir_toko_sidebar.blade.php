@@ -8,15 +8,25 @@
     <li class="nav-item {{ $sidebar_menu !== 'dashboard' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('dashboard.index') }}">
             <i class="fas fa-tachometer-alt"></i>
-            <span>Dashboardqq</span></a>
+            <span>Dashboard</span></a>
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        MASTER DATA
+        PRODUK
     </div>
     <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('web_information.index') }}">
-            <i class="fas fa-info-circle"></i>
-            <span>Web Information</span></a>
+            <i class="fas fa-boxes"></i>
+            <span>Produk Etalase</span></a>
+    </li>
+    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+            <i class="fas fa-store-alt"></i>
+            <span>Point Of Sales</span></a>
+    </li>
+    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+            <i class="fas fa-history"></i>
+            <span>Riwayat Penjualan</span></a>
     </li>
 </ul>
