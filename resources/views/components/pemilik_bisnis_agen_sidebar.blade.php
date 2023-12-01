@@ -8,7 +8,7 @@
     <li class="nav-item {{ $sidebar_menu !== 'dashboard' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('dashboard.index') }}">
             <i class="fas fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboardss</span></a>
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">

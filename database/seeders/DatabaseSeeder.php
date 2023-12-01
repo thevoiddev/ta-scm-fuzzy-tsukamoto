@@ -74,17 +74,17 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Si Cepat',
                 'slug' => 'sicepat',
-                'role' => 'DISTIBUTOR'
+                'role' => 'DISTRIBUTOR'
             ],
             [
                 'name' => 'JNE',
                 'slug' => 'jne',
-                'role' => 'DISTIBUTOR'
+                'role' => 'DISTRIBUTOR'
             ],
             [
                 'name' => 'JNT',
                 'slug' => 'jnt',
-                'role' => 'DISTIBUTOR'
+                'role' => 'DISTRIBUTOR'
             ],
             [
                 'name' => 'Toko Sinar Jaya',

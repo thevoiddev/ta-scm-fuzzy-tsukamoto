@@ -15,7 +15,11 @@
 </head>
 <body id="page-top">
     <div id="wrapper">
-        @include('components.sidebar')
+        @if(session('user')['role']['slug'] == 'pemilik-bisnis')
+            @include('components.'.str_replace('-', '_', session('user')['role']['slug']).'_'.strtolower(session('user')['userable']['role']).'_sidebar')
+        @else
+            @include('components.'.str_replace('-', '_', session('user')['role']['slug']).'_sidebar')
+        @endif
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -36,6 +40,7 @@
                                         @elseif(isset(session('user')['userable']['role']))
                                             |
                                             {{ session('user')['userable']['name'] }}
+                                            ({{ ucwords(strtolower(session('user')['userable']['role'])) }})
                                         @endif
                                     </span>
                                 </p>
