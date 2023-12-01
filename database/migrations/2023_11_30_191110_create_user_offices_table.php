@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name', 75);
             $table->string('slug', 125)->unique();
             $table->string('address', 255);
+            $table->enum('role', ['GUDANG', 'TOKO']);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->dateTime('created_at')->nullable();

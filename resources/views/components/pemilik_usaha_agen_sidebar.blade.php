@@ -31,12 +31,17 @@
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        SDM
+        MASTER DATA
     </div>
     <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('web_information.index') }}">
             <i class="fas fa-warehouse"></i>
             <span>Gudang</span></a>
+    </li>
+    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+            <i class="fas fa-barcode"></i>
+            <span>Scanner Produk</span></a>
     </li>
     <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('web_information.index') }}">

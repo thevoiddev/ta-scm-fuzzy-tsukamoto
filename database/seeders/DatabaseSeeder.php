@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'super-admin'
             ],
             [
-                'name' => 'Pemilik Bisnis',
-                'slug' => 'pemilik-bisnis'
+                'name' => 'Pemilik Usaha',
+                'slug' => 'pemilik-usaha'
             ],
             [
                 'name' => 'Kasir Toko',
@@ -108,49 +108,57 @@ class DatabaseSeeder extends Seeder
                 'business_id' => 10,
                 'name' => 'Toko Sinar Jaya (Kemuning)',
                 'slug' => 'toko-sinar-jaya-kemuning',
-                'address' => 'Jalan basuki rahmat, kemuning'
+                'address' => 'Jalan basuki rahmat, kemuning',
+                'role' => 'TOKO'
             ],
             [
                 'business_id' => 10,
                 'name' => 'Toko Sinar Jaya (Demang)',
                 'slug' => 'toko-sinar-jaya-demang',
-                'address' => 'Jalan demang lebar daun'
+                'address' => 'Jalan demang lebar daun',
+                'role' => 'TOKO'
             ],
             [
                 'business_id' => 10,
                 'name' => 'Gudang Sinar Jaya (Kemuning)',
                 'slug' => 'gudang-sinar-jaya-kemuning',
-                'address' => 'Jalan basuki rahmat, kemuning'
+                'address' => 'Jalan basuki rahmat, kemuning',
+                'role' => 'GUDANG'
             ],
             [
                 'business_id' => 10,
                 'name' => 'Gudang Sinar Jaya (Demang)',
                 'slug' => 'gudang-sinar-jaya-demang',
-                'address' => 'Jalan demang lebar daun'
+                'address' => 'Jalan demang lebar daun',
+                'role' => 'GUDANG'
             ],
             [
                 'business_id' => 11,
                 'name' => 'Toko Abadi Makmur (Pasar 16)',
                 'slug' => 'toko-sinar-jaya-pasar-16',
-                'address' => 'Jalan pasar 16'
+                'address' => 'Jalan pasar 16',
+                'role' => 'TOKO'
             ],
             [
                 'business_id' => 11,
                 'name' => 'Gudang Abadi Makmur (Pasar 16)',
                 'slug' => 'gudang-sinar-jaya-pasar-16',
-                'address' => 'Jalan pasar 16'
+                'address' => 'Jalan pasar 16',
+                'role' => 'GUDANG'
             ],
             [
                 'business_id' => 12,
                 'name' => 'Toko Bukit Besar (Bukit Besar)',
                 'slug' => 'toko-sinar-jaya-bukit-besar',
-                'address' => 'Jalan bukit besar'
+                'address' => 'Jalan bukit besar',
+                'role' => 'TOKO'
             ],
             [
                 'business_id' => 12,
                 'name' => 'Gudang Bukit Besar (Bukit Besar)',
                 'slug' => 'gudang-sinar-jaya-bukit-besar',
-                'address' => 'Jalan bukit besar'
+                'address' => 'Jalan bukit besar',
+                'role' => 'GUDANG'
             ]
         ]);
 

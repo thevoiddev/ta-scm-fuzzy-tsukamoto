@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PortfolioController;
@@ -35,50 +37,6 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
             Route::get('/', 'index')->name('index');
         });
     });
-    
-    Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
-        Route::controller(PostController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::get('/datatable', 'datatable')->name('datatable');
-            Route::get('/{id}/edit', 'edit')->name('edit');
-            Route::post('/{id}/update', 'update')->name('update');
-            Route::post('/{id}/show', 'show')->name('show');
-            Route::delete('/{id}/delete', 'delete')->name('delete');
-        });
-    });
-    
-    Route::group(['as' => 'post_category.', 'prefix' => 'post-category'], function () {
-        Route::controller(PostCategoryController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/datatable', 'datatable')->name('datatable');
-            Route::post('/create', 'create')->name('create');
-            Route::post('/{id}/update', 'update')->name('update');
-            Route::delete('/{id}/delete', 'delete')->name('delete');
-        });
-    });
-    
-    Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
-        Route::controller(NewsController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::get('/datatable', 'datatable')->name('datatable');
-            Route::get('/{id}/edit', 'edit')->name('edit');
-            Route::post('/{id}/update', 'update')->name('update');
-            Route::post('/{id}/show', 'show')->name('show');
-            Route::delete('/{id}/delete', 'delete')->name('delete');
-        });
-    });
-    
-    Route::group(['as' => 'news_category.', 'prefix' => 'news-category'], function () {
-        Route::controller(NewsCategoryController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/datatable', 'datatable')->name('datatable');
-            Route::post('/create', 'create')->name('create');
-            Route::post('/{id}/update', 'update')->name('update');
-            Route::delete('/{id}/delete', 'delete')->name('delete');
-        });
-    });
 
     Route::group(['as' => 'web_information.', 'prefix' => 'web-information'], function () {
         Route::controller(WebInformationController::class)->group(function () {
@@ -86,15 +44,81 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
             Route::post('/update', 'update')->name('update');
         });
     });
-    
-    Route::group(['as' => 'slider.', 'prefix' => 'slider'], function () {
-        Route::controller(SliderController::class)->group(function () {
+
+    Route::group(['as' => 'business.', 'prefix' => 'business'], function () {
+        Route::controller(BusinessController::class)->group(function () {
             Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
             Route::get('/datatable', 'datatable')->name('datatable');
-            Route::post('/create', 'create')->name('create');
-            Route::post('/{id}/update', 'update')->name('update');
-            Route::post('/{id}/show', 'show')->name('show');
-            Route::delete('/{id}/delete', 'delete')->name('delete');
+            Route::get('/{slug}/edit', 'edit')->name('edit');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
         });
     });
+
+    Route::group(['as' => 'user.', 'prefix' => 'user'], function () {
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+    
+    // Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
+    //     Route::controller(PostController::class)->group(function () {
+    //         Route::get('/', 'index')->name('index');
+    //         Route::get('/create', 'create')->name('create');
+    //         Route::get('/datatable', 'datatable')->name('datatable');
+    //         Route::get('/{id}/edit', 'edit')->name('edit');
+    //         Route::post('/{id}/update', 'update')->name('update');
+    //         Route::post('/{id}/show', 'show')->name('show');
+    //         Route::delete('/{id}/delete', 'delete')->name('delete');
+    //     });
+    // });
+    
+    // Route::group(['as' => 'post_category.', 'prefix' => 'post-category'], function () {
+    //     Route::controller(PostCategoryController::class)->group(function () {
+    //         Route::get('/', 'index')->name('index');
+    //         Route::get('/datatable', 'datatable')->name('datatable');
+    //         Route::post('/create', 'create')->name('create');
+    //         Route::post('/{id}/update', 'update')->name('update');
+    //         Route::delete('/{id}/delete', 'delete')->name('delete');
+    //     });
+    // });
+    
+    // Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
+    //     Route::controller(NewsController::class)->group(function () {
+    //         Route::get('/', 'index')->name('index');
+    //         Route::get('/create', 'create')->name('create');
+    //         Route::get('/datatable', 'datatable')->name('datatable');
+    //         Route::get('/{id}/edit', 'edit')->name('edit');
+    //         Route::post('/{id}/update', 'update')->name('update');
+    //         Route::post('/{id}/show', 'show')->name('show');
+    //         Route::delete('/{id}/delete', 'delete')->name('delete');
+    //     });
+    // });
+    
+    // Route::group(['as' => 'news_category.', 'prefix' => 'news-category'], function () {
+    //     Route::controller(NewsCategoryController::class)->group(function () {
+    //         Route::get('/', 'index')->name('index');
+    //         Route::get('/datatable', 'datatable')->name('datatable');
+    //         Route::post('/create', 'create')->name('create');
+    //         Route::post('/{id}/update', 'update')->name('update');
+    //         Route::delete('/{id}/delete', 'delete')->name('delete');
+    //     });
+    // });
+    
+    // Route::group(['as' => 'slider.', 'prefix' => 'slider'], function () {
+    //     Route::controller(SliderController::class)->group(function () {
+    //         Route::get('/', 'index')->name('index');
+    //         Route::get('/datatable', 'datatable')->name('datatable');
+    //         Route::post('/create', 'create')->name('create');
+    //         Route::post('/{id}/update', 'update')->name('update');
+    //         Route::post('/{id}/show', 'show')->name('show');
+    //         Route::delete('/{id}/delete', 'delete')->name('delete');
+    //     });
+    // });
 });

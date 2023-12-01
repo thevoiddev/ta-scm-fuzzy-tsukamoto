@@ -15,7 +15,7 @@
 </head>
 <body id="page-top">
     <div id="wrapper">
-        @if(session('user')['role']['slug'] == 'pemilik-bisnis')
+        @if(session('user')['role']['slug'] == 'pemilik-usaha')
             @include('components.'.str_replace('-', '_', session('user')['role']['slug']).'_'.strtolower(session('user')['userable']['role']).'_sidebar')
         @else
             @include('components.'.str_replace('-', '_', session('user')['role']['slug']).'_sidebar')

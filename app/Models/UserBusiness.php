@@ -9,8 +9,13 @@ class UserBusiness extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function owner()
     {
-        return $this->morphOne(User::class, 'ref');
+        return $this->morphOne(User::class, 'userable');
+    }
+
+    public function offices()
+    {
+        return $this->hasMany(UserOffice::class, 'business_id');
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 75);
             $table->string('slug', 125)->unique();
-            $table->string('role', 75);
+            $table->enum('role', ['PRODUSEN', 'DISTRIBUTOR', 'AGEN']);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->dateTime('created_at')->nullable();

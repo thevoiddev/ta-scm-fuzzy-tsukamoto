@@ -17,15 +17,15 @@
     <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
         <a class="nav-link py-2" href="{{ route('web_information.index') }}">
             <i class="fas fa-info-circle"></i>
-            <span>Web Information</span></a>
+            <span>Informasi Website</span></a>
     </li>
-    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
-        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+    <li class="nav-item {{ $sidebar_menu !== 'business' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('business.index') }}">
             <i class="fas fa-building"></i>
-            <span>Bisnis</span></a>
+            <span>Usaha</span></a>
     </li>
-    <li class="nav-item {{ $sidebar_menu !== 'web_information' ?: 'active' }}">
-        <a class="nav-link py-2" href="{{ route('web_information.index') }}">
+    <li class="nav-item {{ $sidebar_menu !== 'user' ?: 'active' }}">
+        <a class="nav-link py-2" href="{{ route('user.index') }}">
             <i class="fas fa-users"></i>
             <span>Pengguna</span></a>
     </li>

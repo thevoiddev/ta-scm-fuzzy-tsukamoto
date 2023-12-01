@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class WebInformationController extends Controller
 {
     public $sidebar_menu = 'web_information';
-    public $main_content = 'Web Information'; 
+    public $main_content = 'Informasi Website'; 
 
     public function index()
     {
@@ -121,7 +121,7 @@ class WebInformationController extends Controller
 
         return response()->json([
             'status'  => true,
-            'message' => 'Web information updated successfully. Refresh page to see the changes.'
+            'message' => 'Informasi Website updated successfully. Refresh page to see the changes.'
         ], 200);
     }
 }
