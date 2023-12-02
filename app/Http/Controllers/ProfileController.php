@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller
 {
     public $sidebar_menu = '#';
-    public $main_content = 'Profile Pengguna'; 
+    public $main_content = 'Profil Pengguna'; 
 
     public function index()
     {

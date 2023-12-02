@@ -56,7 +56,6 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
     Route::group(['as' => 'business.', 'prefix' => 'business'], function () {
         Route::controller(BusinessController::class)->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/datatable', 'datatable')->name('datatable');
             Route::get('/{slug}/edit', 'edit')->name('edit');

@@ -32,10 +32,10 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <form id="AddDataForm" action="{{ route('business.create') }}" method="POST">
+                    <form id="AddDataForm" action="{{ route('business.store') }}" method="POST">
                         <div class="form-group w-50">
-                            <select class="form-control" id="BusinessType">
-                              <option>Tipe Usaha</option>
+                            <select class="form-control" id="BusinessType" name="type">
+                              <option selected disabled>--- Tipe Usaha ---</option>
                               <option name="PRODUSEN">PRODUSEN</option>
                               <option name="DISTRIBUTOR">DISTRIBUTOR</option>
                               <option name="AGEN">AGEN</option>
@@ -45,22 +45,22 @@
                             <input type="text" class="form-control" placeholder="Nama Usaha" name="name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email Pemilik" name="name" required>
+                            <input type="text" class="form-control" placeholder="Email Pemilik" name="email" required>
                         </div>
                         <div id="AgentInput">
                             <hr>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nama Toko" name="name" required>
+                                <input type="text" class="form-control" placeholder="Nama Toko" name="store_name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Alamat Toko" name="name" required>
+                                <input type="text" class="form-control" placeholder="Alamat Toko" name="store_address">
                             </div>
                             <hr>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nama Gudang" name="name" required>
+                                <input type="text" class="form-control" placeholder="Nama Gudang" name="warehouse_name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Alamat Gudang" name="name" required>
+                                <input type="text" class="form-control" placeholder="Alamat Gudang" name="warehouse_address">
                             </div>
                         </div>
                     </form>
