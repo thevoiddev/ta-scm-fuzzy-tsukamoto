@@ -137,6 +137,7 @@ $('#AddDataForm').submit(function(e){
             FORM.prepend(BootstrapAlert(response.message, 'success'));
 
             DataDatatable.ajax.reload(null, false);
+            $('#AgentInput').hide();
         },
         error : function(request,error)
         {

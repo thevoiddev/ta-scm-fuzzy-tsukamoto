@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewBusiness;
 use App\Models\ProductScanner;
 use App\Models\User;
 use App\Models\UserBusiness;
@@ -9,6 +10,7 @@ use App\Models\UserOffice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -79,6 +81,19 @@ class BusinessController extends Controller
         $business->created_by = session('user')['id'];
         $business->created_at = Carbon::now();
         $business->save();
+        
+        $employee1 = new User();
+        $employee1->role_id = 2;
+        $employee1->userable_id = $business->id;
+        $employee1->userable_type = UserBusiness::class;
+        $employee1->name = "Pemilik Usaha ".$business->name;
+        $employee1->slug = Str::slug("Pemilik Usaha ".$business->name.'-'.date('is'));
+        $employee1->email = $request->email;
+        $employee1->username = "OWR".date('His');
+        $employee1->password = Hash::make('12345678');
+        $employee1->created_by = session('user')['id'];
+        $employee1->created_at = Carbon::now();
+        $employee1->save();
 
         if($request->type == "AGEN"){
             $store = new UserOffice();
@@ -117,19 +132,6 @@ class BusinessController extends Controller
             $scanner1->created_at = Carbon::now();
             $scanner1->save();
 
-            $employee1 = new User();
-            $employee1->role_id = 2;
-            $employee1->userable_id = $business->id;
-            $employee1->userable_type = UserBusiness::class;
-            $employee1->name = "Pemilik Usaha ".$business->name;
-            $employee1->slug = Str::slug("Pemilik Usaha ".$business->name.'-'.date('is'));
-            $employee1->email = $request->email;
-            $employee1->username = "OWR".date('His');
-            $employee1->password = Hash::make('12345678');
-            $employee1->created_by = session('user')['id'];
-            $employee1->created_at = Carbon::now();
-            $employee1->save();
-
             $employee2 = new User();
             $employee2->role_id = 3;
             $employee2->userable_id = $store->id;
@@ -142,17 +144,23 @@ class BusinessController extends Controller
             $employee2->created_at = Carbon::now();
             $employee2->save();
 
-            $employee2 = new User();
-            $employee2->role_id = 4;
-            $employee2->userable_id = $warehouse->id;
-            $employee2->userable_type = UserOffice::class;
-            $employee2->name = "Petugas Gudang ".$business->name;
-            $employee2->slug = Str::slug("Petugas Gudang ".$business->name.'-'.date('is'));
-            $employee2->username = "GDG".date('His');
-            $employee2->password = Hash::make('12345678');
-            $employee2->created_by = session('user')['id'];
-            $employee2->created_at = Carbon::now();
-            $employee2->save();
+            $employee3 = new User();
+            $employee3->role_id = 4;
+            $employee3->userable_id = $warehouse->id;
+            $employee3->userable_type = UserOffice::class;
+            $employee3->name = "Petugas Gudang ".$business->name;
+            $employee3->slug = Str::slug("Petugas Gudang ".$business->name.'-'.date('is'));
+            $employee3->username = "GDG".date('His');
+            $employee3->password = Hash::make('12345678');
+            $employee3->created_by = session('user')['id'];
+            $employee3->created_at = Carbon::now();
+            $employee3->save();
+        }
+
+        if($request->type == "AGEN"){
+            Mail::to($request->email)->send(new NewBusiness(compact('business', 'store', 'warehouse', 'employee1', 'employee2', 'employee3')));
+        }else{
+            Mail::to($request->email)->send(new NewBusiness(compact('business', 'employee1')));
         }
 
         return response()->json([
