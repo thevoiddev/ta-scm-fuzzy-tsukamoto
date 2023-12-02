@@ -191,7 +191,9 @@ $('#WebInformationForm').submit(function(e){
             SUBMIT_BUTTON[0].innerHTML = SUBMIT_BUTTON_CONTENT;
             SUBMIT_BUTTON.prop('disabled', false);
 
-            Swal.fire('Info', response.message, 'success');
+            Swal.fire('Info', response.message, 'success').then(() => {
+                location.reload();
+            });;
         },
         error : function(request,error)
         {

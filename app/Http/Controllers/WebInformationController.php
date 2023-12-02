@@ -121,7 +121,7 @@ class WebInformationController extends Controller
 
         return response()->json([
             'status'  => true,
-            'message' => 'Informasi Website updated successfully. Refresh page to see the changes.'
+            'message' => 'Informasi website berhasil diperbarui.'
         ], 200);
     }
 }

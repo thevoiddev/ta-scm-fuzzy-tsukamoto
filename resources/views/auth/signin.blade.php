@@ -24,7 +24,7 @@
                                     <div class="input-group-append">
                                         <span class="input-group-text toggle-password" data-input="#password"><i class="fas fa-eye"></i></span>
                                     </div>
-                                  </div>
+                                </div>
                                 <button class="btn btn-success btn-block" type="submit">
                                     <i class="fas fa-sign-in-alt mr-2"></i>Masuk
                                 </button>

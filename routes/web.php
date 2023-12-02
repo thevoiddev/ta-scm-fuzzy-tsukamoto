@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WebInformationController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,13 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
     Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function () {
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/', 'index')->name('index');
+        });
+    });
+
+    Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
+        Route::controller(ProfileController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/update', 'update')->name('update');
         });
     });
 
