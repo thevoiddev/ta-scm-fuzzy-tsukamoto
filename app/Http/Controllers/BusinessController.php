@@ -9,6 +9,7 @@ use App\Models\UserBusiness;
 use App\Models\UserOffice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -50,6 +51,15 @@ class BusinessController extends Controller
                         <button type="button" class="btn btn-danger btn-square btn-action btn-action-delete"><i class="fas fa-trash"></i></button>
                     </div>
                 ';
+            })
+            ->addColumn('edit_endpoint', function($row){
+                return route('business.edit', $row->slug);
+            })
+            ->addColumn('delete_endpoint', function($row){
+                return route('business.delete', $row->slug);
+            })
+            ->addColumn('delete_method', function(){
+                return 'DELETE';
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -166,6 +176,180 @@ class BusinessController extends Controller
         return response()->json([
             'status'  => true,
             'message' => 'Usaha berhasil didaftarkan. Detail akun dikirimkan ke email '.$request->email.'. Silahkan cek folder spam jika perlu.'
+        ], 200);
+    }
+
+    public function delete($slug)
+    {
+        $business = UserBusiness::where('slug', $slug)->first();
+
+        if(!$business){
+            return response()->json([
+                'status'  => false,
+                'message' => 'Data usaha tidak ditemukan.'
+            ], 404);
+        }
+
+        $office = UserOffice::where('business_id', $business->id)->get();
+
+        foreach($office as $item){
+            $scanner = ProductScanner::where('office_id', $item->id)->first();
+            $scanner?->delete();
+
+            $employee = User::where('userable_id', $item->id)->where('userable_type', UserOffice::class)->first();
+            $employee?->delete();
+
+            $item?->delete();
+        }
+
+        $owner = User::where('userable_id', $business->id)->where('userable_type', UserBusiness::class)->first();
+        $owner?->delete();
+
+        $business?->delete();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Usaha berhasil dihapus, semua data terkait usaha ini sudah di hapus juga.'
+        ], 200);
+    }
+
+    public function edit($slug)
+    {
+        $web_information = $this->WebInformation();
+        $sidebar_menu = $this->sidebar_menu;
+        $main_content = $this->main_content;
+        $title = "$main_content - $web_information->title";
+
+        $business = UserBusiness::where('slug', $slug)->first();
+        $office = UserOffice::where('business_id', $business->id)->get();
+
+        if(!$business) return abort(404);
+
+        return view('business.edit', compact(
+            'web_information', 'sidebar_menu', 'main_content', 'title', 'business', 'office'
+        ));
+    }
+
+    public function office_datatable($slug)
+    {
+        $business = UserBusiness::where('slug', $slug)->first();
+
+        if(!$business) return abort(404);
+
+        $data = UserOffice::where('business_id', $business->id)->get();
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('role', function($row){
+                return ucwords(strtolower($row->role));
+            })
+            ->addColumn('action', function($row){
+                return '
+                    <div class="btn-action-container">
+                        <button type="button" class="btn btn-primary btn-square btn-action btn-action-edit"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-square btn-action btn-action-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                ';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function employee_datatable($slug)
+    {
+        $business = UserBusiness::where('slug', $slug)->first();
+        $office = UserOffice::where('business_id', $business->id)->pluck('id');
+
+        if(!$business) return abort(404);
+
+        $data = User::with('userable')->where(function($query) use($business){
+            $query->where('userable_id', $business->id)
+            ->where('userable_type', UserBusiness::class);
+        })->orWhere(function($query) use($office){
+            $query->whereIn('userable_id', $office)
+            ->where('userable_type', UserOffice::class);
+        })->get();
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('role', function($row){
+                return ucwords(strtolower($row->role->name));
+            })
+            ->addColumn('office', function($row){
+                return $row->userable?->address ?? 'N/A';
+            })
+            ->addColumn('action', function($row){
+                return '
+                    <div class="btn-action-container">
+                        <button type="button" class="btn btn-primary btn-square btn-action btn-action-edit"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-square btn-action btn-action-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                ';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function scanner_datatable($slug)
+    {
+        $business = UserBusiness::where('slug', $slug)->first();
+        $office = UserOffice::where('business_id', $business->id)->pluck('id');
+
+        if(!$business) return abort(404);
+
+        $data = ProductScanner::with('office')->whereIn('office_id', $office)->get();
+
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('office', function($row){
+                return $row->office->name;
+            })
+            ->addColumn('action', function($row){
+                return '
+                    <div class="btn-action-container">
+                        <button type="button" class="btn btn-primary btn-square btn-action btn-action-edit"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-square btn-action btn-action-delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                ';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function  store_scanner(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'office' => 'required|string',
+            'name'   => 'required|string'
+        ]);
+
+        if($validation->fails()){
+            return response()->json([
+                'status'  => false,
+                'message' => $validation->errors()->first()
+            ], 400);
+        }
+
+        $office = UserOffice::where('slug', $request->office)->first();
+
+        if(!$office){
+            return response()->json([
+                'status'  => false,
+                'message' => 'Cabang tidak ditemukan.'
+            ], 404);
+        }
+
+        $scanner = new ProductScanner();
+        $scanner->office_id = $office->id;
+        $scanner->name = $request->name;
+        $scanner->slug = Str::slug($request->name.'-'.date('is'));
+        $scanner->created_by = session('user')['id'];
+        $scanner->created_at = Carbon::now();
+        $scanner->save();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Perangkat berhasil disimpan.'
         ], 200);
     }
 }

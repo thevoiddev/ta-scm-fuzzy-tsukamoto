@@ -57,7 +57,11 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
         Route::controller(BusinessController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
+            Route::post('/store-scanner', 'store_scanner')->name('store_scanner');
             Route::get('/datatable', 'datatable')->name('datatable');
+            Route::get('{slug}/office-datatable', 'office_datatable')->name('office_datatable');
+            Route::get('{slug}/employee-datatable', 'employee_datatable')->name('employee_datatable');
+            Route::get('{slug}/scanner-datatable', 'scanner_datatable')->name('scanner_datatable');
             Route::get('/{slug}/edit', 'edit')->name('edit');
             Route::post('/{slug}/update', 'update')->name('update');
             Route::delete('/{slug}/delete', 'delete')->name('delete');

@@ -27,7 +27,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="AddDataLabel">Tambah {{ $main_content }}</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -66,8 +66,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success" form="AddDataForm"><i class="fas fa-save mr-2"></i>Save</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                  <button type="submit" class="btn btn-success" form="AddDataForm"><i class="fas fa-save mr-2"></i>Simpan</button>
                 </div>
               </div>
             </div>
@@ -91,7 +91,7 @@ var DataDatatable = $('#DataDatatable').DataTable({
             name: 'action', 
             orderable: true, 
             searchable: true
-        },
+        }
     ]
 });
 
@@ -149,18 +149,25 @@ $('#AddDataForm').submit(function(e){
     });
 });
 
+$('#DataDatatable tbody').on('click', '.btn-action-edit', function() {
+    var DataData = DataDatatable.row($(this).parents('tr')).data();
+    if (DataData === undefined) DataData = DataDatatable.row($(this)).data();
+    
+    window.location.href = DataData.edit_endpoint;
+});
+
 $('#DataDatatable tbody').on('click', '.btn-action-delete', function() {
     var DataData = DataDatatable.row($(this).parents('tr')).data();
     if (DataData === undefined) DataData = DataDatatable.row($(this)).data();
     
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Yakin ingin menghapus usaha ini?',
+        text: "Semua data terkait usaha ini akan dihapus dan tidak bisa dikembalikan.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#1cc88a',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({

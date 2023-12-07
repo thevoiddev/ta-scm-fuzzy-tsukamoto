@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductScanner extends Model
 {
     use HasFactory;
+
+    public function office()
+    {
+        return $this->belongsTo(UserOffice::class, 'office_id');
+    }
 }

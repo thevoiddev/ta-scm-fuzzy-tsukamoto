@@ -105,28 +105,28 @@ class DatabaseSeeder extends Seeder
 
         UserOffice::insert([
             [
-                'business_id' => 10,
+                'business_id' => 9,
                 'name' => 'Toko Sinar Jaya (Kemuning)',
                 'slug' => 'toko-sinar-jaya-kemuning',
                 'address' => 'Jalan basuki rahmat, kemuning',
                 'role' => 'TOKO'
             ],
             [
-                'business_id' => 10,
+                'business_id' => 9,
                 'name' => 'Toko Sinar Jaya (Demang)',
                 'slug' => 'toko-sinar-jaya-demang',
                 'address' => 'Jalan demang lebar daun',
                 'role' => 'TOKO'
             ],
             [
-                'business_id' => 10,
+                'business_id' => 9,
                 'name' => 'Gudang Sinar Jaya (Kemuning)',
                 'slug' => 'gudang-sinar-jaya-kemuning',
                 'address' => 'Jalan basuki rahmat, kemuning',
                 'role' => 'GUDANG'
             ],
             [
-                'business_id' => 10,
+                'business_id' => 9,
                 'name' => 'Gudang Sinar Jaya (Demang)',
                 'slug' => 'gudang-sinar-jaya-demang',
                 'address' => 'Jalan demang lebar daun',
