@@ -41,7 +41,7 @@ class ProductController extends Controller
             ->addIndexColumn()
             ->addColumn('image_preview', function ($row) {
                 return '
-                    <img width="100%" src="' . (asset('images/products/' . $row->image)) . '" alt="Slider Image">
+                    <img width="100%" src="' . (asset('images/products/' . $row->image)) . '" alt="Product Image">
                 ';
             })
             ->addColumn('detail', function ($row) {
@@ -52,11 +52,14 @@ class ProductController extends Controller
                     <p class='mb-0'><b>Deskripsi</b></p>
                     <p class='mb-0'>$row->description</p>
                     <hr class='m-0'>
-                    <p class='mb-0'><b>harga</b></p>
+                    <p class='mb-0'><b>Harga</b></p>
                     <p class='mb-0'>Rp." . number_format($row->price, 0, ',', '.') . "</p>
                     <hr class='m-0'>
                     <p class='mb-0'><b>RFID Tag</b></p>
                     <p class='mb-0'>$row->tag_id</p>
+                    <hr class='m-0'>
+                    <p class='mb-0'><b>Kategori</b></p>
+                    <p class='mb-0'>{$row->category->name}</p>
                     <hr class='m-0'>
                     <p class='mb-0'><b>Tag</b></p>
                     <p class='mb-0'>
