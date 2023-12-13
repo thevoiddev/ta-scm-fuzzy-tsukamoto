@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-success">Data {{ $main_content }}</h6>
         </div>
         <div class="card-body">
-            <form id="DataForm" action="{{ route('profile.update') }}" method="POST">
+            <form id="DataForm" action="{{ route('business.update', $business->slug) }}" method="POST">
                 <div class="form-row mb-3">
                     <div class="col">
                         <label for="">Nama</label>
@@ -46,7 +46,7 @@
                                 <th>Nama Cabang</th>
                                 <th>Alamat</th>
                                 <th>Tipe</th>
-                                <th width="10%">Aksi</th>
+                                {{-- <th width="10%">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -69,7 +69,7 @@
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>Cabang</th>
-                                <th width="10%">Aksi</th>
+                                {{-- <th width="10%">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -91,7 +91,7 @@
                                 <th width="5%">No</th>
                                 <th>Nama</th>
                                 <th>Cabang</th>
-                                <th width="10%">Aksi</th>
+                                {{-- <th width="10%">Aksi</th> --}}
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -185,7 +185,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="AddEmployeeForm" action="{{ route('business.store_office') }}" method="POST">
+                        <form id="AddEmployeeForm" action="{{ route('business.store_employee') }}" method="POST">
                             <input type="hidden" name="business" value="{{ $business->slug }}">
                             <div class="form-group">
                                 <select class="form-control" name="office">
@@ -248,12 +248,12 @@
                     data: 'role',
                     name: 'role'
                 },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true
-                }
+                // {
+                //     data: 'action',
+                //     name: 'action',
+                //     orderable: true,
+                //     searchable: true
+                // }
             ]
         });
 
@@ -277,12 +277,12 @@
                     data: 'office',
                     name: 'office'
                 },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true
-                }
+                // {
+                //     data: 'action',
+                //     name: 'action',
+                //     orderable: true,
+                //     searchable: true
+                // }
             ]
         });
 
@@ -302,13 +302,50 @@
                     data: 'office',
                     name: 'office'
                 },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true
-                }
+                // {
+                //     data: 'action',
+                //     name: 'action',
+                //     orderable: true,
+                //     searchable: true
+                // }
             ]
+        });
+
+        // Business
+        $('#DataForm').submit(function(e) {
+            e.preventDefault();
+
+            const FORM = $(e.currentTarget);
+            const FORM_DATA = new FormData(e.currentTarget);
+            const SUBMIT_BUTTON = FORM.find('button[type="submit"]');
+            const LOADING_BUTTON_CONTENT =
+                `<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>`;
+            const SUBMIT_BUTTON_CONTENT = SUBMIT_BUTTON[0].innerHTML;
+
+            SUBMIT_BUTTON[0].innerHTML = LOADING_BUTTON_CONTENT;
+            SUBMIT_BUTTON.prop('disabled', true);
+
+            $.ajax({
+                url: FORM.attr('action'),
+                type: FORM.attr('method'),
+                data: FORM_DATA,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    SUBMIT_BUTTON[0].innerHTML = SUBMIT_BUTTON_CONTENT;
+                    SUBMIT_BUTTON.prop('disabled', false);
+
+                    Swal.fire('Info', response.message, 'success').then(() => {
+                        window.location = response.url;
+                    });
+                },
+                error: function(request, error) {
+                    SUBMIT_BUTTON[0].innerHTML = SUBMIT_BUTTON_CONTENT;
+                    SUBMIT_BUTTON.prop('disabled', false);
+
+                    Swal.fire('Info', request.responseJSON.message, 'info');
+                }
+            });
         });
 
         // Scanner

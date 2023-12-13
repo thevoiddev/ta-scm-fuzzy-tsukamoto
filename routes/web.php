@@ -58,6 +58,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function () {
         Route::controller(BusinessController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
+            Route::post('{slug}/update', 'update')->name('update');
             Route::post('/store-scanner', 'store_scanner')->name('store_scanner');
             Route::post('/store-office', 'store_office')->name('store_office');
             Route::post('/store-employee', 'store_employee')->name('store_employee');

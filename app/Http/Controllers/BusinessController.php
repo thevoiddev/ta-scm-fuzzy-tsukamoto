@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewAgentEmployee;
 use App\Mail\NewBusiness;
 use App\Models\ProductScanner;
 use App\Models\User;
@@ -242,6 +243,43 @@ class BusinessController extends Controller
         ));
     }
 
+    public function update($slug, Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'type' => 'required|string|max:75',
+            'name' => 'required|string|max:75',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'status'  => false,
+                'message' => $validation->errors()->first()
+            ], 400);
+        }
+
+        $business = UserBusiness::where('slug', $slug)->first();
+
+        if (!$business) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Usaha tidak ditemukan.'
+            ], 404);
+        }
+
+        $business->name = $request->name;
+        $business->slug = Str::slug($request->name . '-' . date('is'));
+        $business->role = $request->type;
+        $business->updated_by = session('user')['id'];
+        $business->updated_at = Carbon::now();
+        $business->save();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Usaha berhasil diubah.',
+            'url' => route('business.edit', $business->slug)
+        ], 200);
+    }
+
     public function office_datatable($slug)
     {
         $business = UserBusiness::where('slug', $slug)->first();
@@ -429,6 +467,8 @@ class BusinessController extends Controller
             ], 404);
         }
 
+        $business = $office->business;
+
         $role = UserRole::where('slug', $request->role)->first();
 
         if (!$role) {
@@ -451,7 +491,7 @@ class BusinessController extends Controller
         $employee->created_at = Carbon::now();
         $employee->save();
 
-        Mail::to($request->email)->send(new NewBusiness(compact('business', 'role', 'employee')));
+        Mail::to($request->email)->send(new NewAgentEmployee(compact('business', 'office', 'role', 'employee')));
 
         return response()->json([
             'status'  => true,

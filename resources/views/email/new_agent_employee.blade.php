@@ -10,7 +10,8 @@
 
 <body>
     <p>Hallo {{ $data['employee']->name }}, anda telah didaftarkan sebagai pegawai pada usaha
-        {{ $data['business']->name }} dengan jabatan {{ $data['role']->name }}. Berikut akun anda :</p>
+        {{ $data['business']->name }} dengan jabatan {{ $data['role']->name }} pada cabang {{ $data['office']->name }}.
+        Berikut akun anda :</p>
     <ul>
         <li>Username : {{ $data['employee']->username }}</li>
         <li>Password : 12345678</li>
