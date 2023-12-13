@@ -6,14 +6,14 @@
             <h6 class="m-0 font-weight-bold text-success">{{ $main_content }}</h6>
         </div>
         <div class="card-body">
-            <button class="btn btn-success mb-3" data-toggle="modal" data-target="#AddNewCarousel"><i class="fas fa-plus"></i>
+            <button class="btn btn-success mb-3" data-toggle="modal" data-target="#AddNewProduct"><i class="fas fa-plus"></i>
                 Add {{ $main_content }}</button>
             <div class="table-responsive">
-                <table class="table table-bordered" id="CarouselDatatable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="ProductDatatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th width="5%">#</th>
-                            <th width="40%">Image</th>
+                            <th width="25%">Image</th>
                             <th>Detail</th>
                             <th width="5%">Action</th>
                         </tr>
@@ -22,30 +22,30 @@
                 </table>
             </div>
         </div>
-        <div class="modal fade" id="AddNewCarousel" tabindex="-1" role="dialog" aria-labelledby="AddNewCarouselLabel"
+        <div class="modal fade" id="AddNewProduct" tabindex="-1" role="dialog" aria-labelledby="AddNewProductLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="AddNewCarouselLabel">Add {{ $main_content }}</h5>
+                        <h5 class="modal-title" id="AddNewProductLabel">Add {{ $main_content }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="AddNewCarouselForm" action="{{ route('product.store') }}" method="POST">
+                        <form id="AddNewProductForm" action="{{ route('product.store') }}" method="POST">
                             <div class="form-group">
                                 <div class="image-preview">
                                     <div class="image-preview-container">
                                         <i class="fas fa-file-image"></i>
                                         <p>Gambar produk...</p>
-                                        <img id="AddNewCarouselImagePreview" src="" alt="Product Image">
+                                        <img id="AddNewProductImagePreview" src="" alt="Product Image">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="AddNewCarouselImage"
+                                    <input type="file" class="custom-file-input" id="AddNewProductImage"
                                         accept="image/png, image/gif, image/jpeg" name="image" required>
                                     <label class="custom-file-label">Pilih file...</label>
                                 </div>
@@ -82,60 +82,73 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" form="AddNewCarouselForm"><i
+                        <button type="submit" class="btn btn-success" form="AddNewProductForm"><i
                                 class="fas fa-save mr-2"></i>Save</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="EditCarousel" tabindex="-1" role="dialog" aria-labelledby="EditCarouselLabel"
+        <div class="modal fade" id="EditProduct" tabindex="-1" role="dialog" aria-labelledby="EditProductLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="EditCarouselLabel">Add {{ $main_content }}</h5>
+                        <h5 class="modal-title" id="EditProductLabel">Add {{ $main_content }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="EditCarouselForm">
+                        <form id="EditProductForm">
                             <div class="form-group">
                                 <div class="image-preview">
                                     <div class="image-preview-container">
                                         <i class="fas fa-file-image"></i>
-                                        <p>Upload an image</p>
-                                        <img id="EditCarouselImagePreview" src="" alt="Product Image">
+                                        <p>Gambar produk...</p>
+                                        <img id="EditProductImagePreview" src="" alt="Product Image">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="EditCarouselImage"
+                                    <input type="file" class="custom-file-input" id="EditProductImage"
                                         accept="image/png, image/gif, image/jpeg" name="image">
-                                    <label class="custom-file-label">Choose file...</label>
+                                    <label class="custom-file-label">Pilih file...</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="office">
+                                <select class="form-control" name="category">
                                     @foreach ($product_category as $item)
                                         <option value="{{ $item->slug }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter title" name="title"
+                                <input type="text" class="form-control" placeholder="Masukkan RFID tag"
+                                    name="tag_id" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Masukkan nama" name="name"
                                     required>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter description"
+                                <input type="text" class="form-control" placeholder="Masukkan harga" name="price"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Masukkan deskripsi"
                                     name="description" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Masukkan tag" name="tag"
+                                    required>
+                                <small>*pisahkan dengan koma</small>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" form="EditCarouselForm"><i
+                        <button type="submit" class="btn btn-success" form="EditProductForm"><i
                                 class="fas fa-save mr-2"></i>Save</button>
                     </div>
                 </div>
@@ -146,7 +159,7 @@
 
 @section('script')
     <script>
-        var CarouselDatatable = $('#CarouselDatatable').DataTable({
+        var ProductDatatable = $('#ProductDatatable').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{{ route('product.datatable') }}",
@@ -171,17 +184,17 @@
             ]
         });
 
-        $('#AddNewCarouselImage').on('change', function(e) {
+        $('#AddNewProductImage').on('change', function(e) {
             var Filename = e.target.files[0].name;
-            $(this).next('#AddNewCarouselForm .custom-file-label').text(Filename);
+            $(this).next('#AddNewProductForm .custom-file-label').text(Filename);
 
             if (e.target.files && e.target.files[0]) {
-                $('#AddNewCarouselForm .image-preview-container i, #AddNewCarouselForm .image-preview-container p')
+                $('#AddNewProductForm .image-preview-container i, #AddNewProductForm .image-preview-container p')
                     .hide();
 
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#AddNewCarouselImagePreview')
+                    $('#AddNewProductImagePreview')
                         .attr('src', e.target.result);
                 };
 
@@ -189,17 +202,17 @@
             }
         });
 
-        $('#EditCarouselImage').on('change', function(e) {
+        $('#EditProductImage').on('change', function(e) {
             var Filename = e.target.files[0].name;
-            $(this).next('#EditCarouselForm .custom-file-label').text(Filename);
+            $(this).next('#EditProductForm .custom-file-label').text(Filename);
 
             if (e.target.files && e.target.files[0]) {
-                $('#EditCarouselForm .image-preview-container i, #EditCarouselForm .image-preview-container p')
+                $('#EditProductForm .image-preview-container i, #EditProductForm .image-preview-container p')
                     .hide();
 
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#EditCarouselImagePreview')
+                    $('#EditProductImagePreview')
                         .attr('src', e.target.result);
                 };
 
@@ -207,19 +220,19 @@
             }
         });
 
-        $('#AddNewCarousel').on('hidden.bs.modal', function(e) {
+        $('#AddNewProduct').on('hidden.bs.modal', function(e) {
             const MODAL = $(e.currentTarget);
 
             MODAL.find('form')[0].reset();
             MODAL.find('form .alert').remove();
             MODAL.find('form img').attr('src', '');
-            MODAL.find('#AddNewCarouselForm .custom-file-label').text('Choose file...');
+            MODAL.find('#AddNewProductForm .custom-file-label').text('Choose file...');
 
-            $('#AddNewCarouselForm .image-preview-container i, #AddNewCarouselForm .image-preview-container p')
+            $('#AddNewProductForm .image-preview-container i, #AddNewProductForm .image-preview-container p')
                 .show();
         });
 
-        $('#AddNewCarouselForm').submit(function(e) {
+        $('#AddNewProductForm').submit(function(e) {
             e.preventDefault();
 
             const FORM = $(e.currentTarget);
@@ -247,15 +260,15 @@
                     FORM[0].reset();
                     FORM.find('.alert').remove();
                     FORM.find('img').attr('src', '');
-                    $('#AddNewCarousel').find('#AddNewCarouselForm .custom-file-label').text(
+                    $('#AddNewProduct').find('#AddNewProductForm .custom-file-label').text(
                         'Choose file...');
 
-                    $('#AddNewCarouselForm .image-preview-container i, #AddNewCarouselForm .image-preview-container p')
+                    $('#AddNewProductForm .image-preview-container i, #AddNewProductForm .image-preview-container p')
                         .show();
 
                     FORM.prepend(BootstrapAlert(response.message, 'success'));
 
-                    CarouselDatatable.ajax.reload(null, false);
+                    ProductDatatable.ajax.reload(null, false);
                 },
                 error: function(request, error) {
                     SUBMIT_BUTTON[0].innerHTML = SUBMIT_BUTTON_CONTENT;
@@ -266,7 +279,13 @@
             });
         });
 
-        $('#EditCarouselForm').submit(function(e) {
+        $('#EditProduct').on('hidden.bs.modal', function(e) {
+            const MODAL = $(e.currentTarget);
+
+            MODAL.find('form .alert').remove();
+        });
+
+        $('#EditProductForm').submit(function(e) {
             e.preventDefault();
 
             const FORM = $(e.currentTarget);
@@ -291,11 +310,11 @@
                     SUBMIT_BUTTON[0].innerHTML = SUBMIT_BUTTON_CONTENT;
                     SUBMIT_BUTTON.prop('disabled', false);
 
-                    FORM.find('#AddNewCarouselForm .custom-file-label').text('Choose file...');
+                    FORM.find('#AddNewProductForm .custom-file-label').text('Choose file...');
 
                     FORM.prepend(BootstrapAlert(response.message, 'success'));
 
-                    CarouselDatatable.ajax.reload(null, false);
+                    ProductDatatable.ajax.reload(null, false);
                 },
                 error: function(request, error) {
                     SUBMIT_BUTTON[0].innerHTML = SUBMIT_BUTTON_CONTENT;
@@ -306,24 +325,26 @@
             });
         });
 
-        $('#CarouselDatatable tbody').on('click', '.btn-action-edit', function() {
-            var CarouselData = CarouselDatatable.row($(this).parents('tr')).data();
-            if (CarouselData === undefined) CarouselData = CarouselDatatable.row($(this)).data();
+        $('#ProductDatatable tbody').on('click', '.btn-action-edit', function() {
+            var ProductData = ProductDatatable.row($(this).parents('tr')).data();
+            if (ProductData === undefined) ProductData = ProductDatatable.row($(this)).data();
 
-            $('#EditCarouselForm').attr('action', CarouselData.update_endpoint);
-            $('#EditCarouselForm').attr('method', CarouselData.update_method);
-            $('#EditCarouselForm [name="title"]').val(CarouselData.title);
-            $('#EditCarouselForm [name="description"]').val(CarouselData.description);
-            $('#EditCarouselForm [name="button_text"]').val(CarouselData.button_text);
-            $('#EditCarouselForm [name="link"]').val(CarouselData.link);
-            $('#EditCarouselImagePreview').attr('src', CarouselData.image_url);
-            $('#EditCarouselForm .image-preview-container i, #EditCarouselForm .image-preview-container p').hide();
-            $('#EditCarousel').modal('show');
+            $('#EditProductForm').attr('action', ProductData.update_endpoint);
+            $('#EditProductForm').attr('method', ProductData.update_method);
+            $('#EditProductForm [name="category"]').val(ProductData.category).change();
+            $('#EditProductForm [name="name"]').val(ProductData.name);
+            $('#EditProductForm [name="description"]').val(ProductData.description);
+            $('#EditProductForm [name="price"]').val(ProductData.price);
+            $('#EditProductForm [name="tag"]').val(ProductData.tag);
+            $('#EditProductForm [name="tag_id"]').val(ProductData.tag_id);
+            $('#EditProductImagePreview').attr('src', ProductData.image_url);
+            $('#EditProductForm .image-preview-container i, #EditProductForm .image-preview-container p').hide();
+            $('#EditProduct').modal('show');
         });
 
-        $('#CarouselDatatable tbody').on('click', '.btn-action-show', function() {
-            var CarouselData = CarouselDatatable.row($(this).parents('tr')).data();
-            if (CarouselData === undefined) CarouselData = CarouselDatatable.row($(this)).data();
+        $('#ProductDatatable tbody').on('click', '.btn-action-show', function() {
+            var ProductData = ProductDatatable.row($(this).parents('tr')).data();
+            if (ProductData === undefined) ProductData = ProductDatatable.row($(this)).data();
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -336,10 +357,10 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: CarouselData.show_endpoint,
-                        type: CarouselData.show_method,
+                        url: ProductData.show_endpoint,
+                        type: ProductData.show_method,
                         success: function(response) {
-                            CarouselDatatable.ajax.reload(null, false);
+                            ProductDatatable.ajax.reload(null, false);
                             Swal.fire('Info', response.message, 'success');
                         },
                         error: function(request, error) {
@@ -350,9 +371,9 @@
             });
         });
 
-        $('#CarouselDatatable tbody').on('click', '.btn-action-delete', function() {
-            var CarouselData = CarouselDatatable.row($(this).parents('tr')).data();
-            if (CarouselData === undefined) CarouselData = CarouselDatatable.row($(this)).data();
+        $('#ProductDatatable tbody').on('click', '.btn-action-delete', function() {
+            var ProductData = ProductDatatable.row($(this).parents('tr')).data();
+            if (ProductData === undefined) ProductData = ProductDatatable.row($(this)).data();
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -365,10 +386,10 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: CarouselData.delete_endpoint,
-                        type: CarouselData.delete_method,
+                        url: ProductData.delete_endpoint,
+                        type: ProductData.delete_method,
                         success: function(response) {
-                            CarouselDatatable.ajax.reload(null, false);
+                            ProductDatatable.ajax.reload(null, false);
                             Swal.fire('Info', response.message, 'success');
                         },
                         error: function(request, error) {

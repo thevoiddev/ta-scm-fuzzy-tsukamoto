@@ -77,6 +77,9 @@ class ProductController extends Controller
                     </div>
                 ';
             })
+            ->addColumn('category', function ($row) {
+                return $row->category->slug;
+            })
             ->addColumn('update_endpoint', function ($row) {
                 return route('product.update', $row->slug);
             })
@@ -150,8 +153,8 @@ class ProductController extends Controller
     {
         $validation = Validator::make([...$request->all(), 'slug' => $slug], [
             'slug'        => 'required|exists:products,slug',
-            'category'    => 'required|string|exists:product_categpries,slug',
-            'image'       => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'category'    => 'required|string|exists:product_categories,slug',
+            'image'       => 'nullable|mimes:jpeg,png,jpg,gif,svg',
             'tag_id'      => 'required|string|max:50',
             'name'       => 'required|string|max:50',
             'price'       => 'required|integer',
