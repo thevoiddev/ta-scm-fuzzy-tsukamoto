@@ -54,7 +54,6 @@ class BusinessController extends Controller
                 return '
                     <div class="btn-action-container">
                         <button type="button" class="btn btn-primary btn-square btn-action btn-action-edit"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-square btn-action btn-action-delete"><i class="fas fa-trash"></i></button>
                     </div>
                 ';
             })
