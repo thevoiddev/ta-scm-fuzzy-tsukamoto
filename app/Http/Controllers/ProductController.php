@@ -20,7 +20,7 @@ class ProductController extends Controller
         $web_information = $this->WebInformation();
         $sidebar_menu = $this->sidebar_menu;
         $main_content = $this->main_content;
-        $title = "$main_content - $web_information->name";
+        $title = "$main_content - $web_information->title";
 
         $product_category = ProductCategory::get();
 
@@ -35,7 +35,7 @@ class ProductController extends Controller
 
     public function datatable()
     {
-        $data = Product::orderBy('name', 'asc')->get();
+        $data = Product::orderBy('name', 'asc')->where('created_by', session('user')['id'])->get();
 
         return DataTables::of($data)
             ->addIndexColumn()

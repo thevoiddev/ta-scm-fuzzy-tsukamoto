@@ -8,6 +8,8 @@ use App\Models\Distributor;
 use App\Models\Producer;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductLog;
+use App\Models\ProductLogItem;
 use App\Models\ProductScanner;
 use App\Models\User;
 use App\Models\UserBusiness;
@@ -359,7 +361,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10000001307_20201202144914653_base.jpg',
                 'price' => 20500,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -371,7 +373,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10110006404_20210802152301907_base.jpg',
                 'price' => 12500,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -383,7 +385,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10212062444_20210903204355227_base.jpg',
                 'price' => 23900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -395,7 +397,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10560000420_20210908142250176_base.jpg',
                 'price' => 23900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -407,7 +409,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10000109036_20201202145044554_base.jpg',
                 'price' => 15500,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -419,7 +421,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10161176313_20201110104341466_base.jpg',
                 'price' => 11900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -431,7 +433,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A10000109036_20201202145044554_base.jpg',
                 'price' => 9900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -443,7 +445,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => 'A10190642648_base.jpg',
                 'price' => 26600,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -455,7 +457,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A6794810001075_20210908152242695_base.jpg',
                 'price' => 23500,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -467,7 +469,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A09870892929_20210903142424894_base.jpg',
                 'price' => 5200,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -479,7 +481,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A09870892929_20210903142424894_base.jpg',
                 'price' => 9900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -491,7 +493,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A7038860001019_20200722112246995_base.jpg',
                 'price' => 67900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -503,7 +505,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A7097150001037_20210507101739629_base.jpg',
                 'price' => 8500,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -515,7 +517,7 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A09870893123_20201202152709249_base.jpg',
                 'price' => 10900,
-                'created_by'       => 1,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
             [
@@ -527,7 +529,277 @@ class DatabaseSeeder extends Seeder
                 'tag' => 'makanan ringan',
                 'image' => '1_A09870893127_20201202145214075_base.jpg',
                 'price' => 14200,
-                'created_by'       => 1,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            // Minuman
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP16',
+                'name' => 'Red Bull Kratingdaeng Energy Drink Gold 250 ml',
+                'slug' => 'red-bull-kratingdaeng-energy-drink-gold-250-ml-664646',
+                'description' => 'Red Bull Kratingdaeng Energy Drink Gold 250 ml adalah minuman energi terbaru persembahan Kratingdaeng yang hadir dalam rasa aneka buah yang menyegarkan. Kratingdaeng Red Bull membantu menjaga stamina sekaligus menghilangkan dahaga sehingga bisa dinikmati setiap saat. Kratingdaeng Red Bull mengandung formulasi berkualitas tinggi seperti Kafein, Taurin, Vitamin B Kompleks, serta Lisin dan Kolin, berkhasiat untuk mencegah kelelahan otot dan meningkatkan kewaspadaan. Kratingdaeng Red Bull baik di konsumsi saat Anda bekerja, ketika berolahraga ataupun sekedar sebagai pelepas dahaga. Disarankan dikonsumsi 30 menit belum beraktifitas dan disajikan dingin. Untuk hasil terbaik, minum Kratingdaeng Red Bull secara rutin 1 kaleng untuk menjaga kebugaran tubuh setiap hari.',
+                'tag' => 'minuman',
+                'image' => '1_A6646460001022_20210604171316607_base.jpg',
+                'price' => 8700,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP17',
+                'name' => 'Tehbotol Sosro Tawar 350 ml',
+                'slug' => 'tehbotol-sosro-tawar-350-ml-635841',
+                'description' => 'Tehbotol Sosro Tawar 350 ml merupakan salah satu varian dari produk SOSRO Teh Botol yang memiliki rasa tawar. Tidak seperti teh pada umumunya yang memiliki rasa manis, SOSRO sengaja menghadirkan teh dalam rasa tawar tanpa ada campuran gula atau pemanis, cocok sekali bagi Anda yang menyukai minuman teh secara original. Meskipun rasanya tawar, SOSRO Teh Botol Tawar Pet 350ml tetap memiliki kenikmatan tersendiri dan tentunya rasa khas dari SOSRO tetap terjaga karena SOSRO memproduksi setiap produknya secara bermutu. Rasakan kenikmatan rasa teh tawar yang dikemas dalam Tehbotol Sosro Tawar 350 ml.',
+                'tag' => 'minuman',
+                'image' => 'A6358410001086_A6358410001086_20200423001723369_base.jpg',
+                'price' => 3900,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP18',
+                'name' => 'Olatte Pear Can 240 ml',
+                'slug' => 'olatte-pear-can-240-ml-738764',
+                'description' => 'Olatte Pear Can 240 ml - Minuman rasa susu dan pir yang terbuat dari berbagai macam bahan berkualitas dan pilihan sehingga menghasilkan rasa yang pas di lidah. Disajikan dingin akan lebih nikmat, cocok untuk melepas dahaga di sela segudang aktifitas anda sehari-hari. Rasakan kesegaran Olatte Pear Can 240ml dan dapatkan produknya di sini',
+                'tag' => 'minuman',
+                'image' => '1_A7387640002168_20210914110652098_base.jpg',
+                'price' => 9400,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP19',
+                'name' => 'Olatte Peach Can 240 ml',
+                'slug' => 'olatte-peach-can-240-ml-738763',
+                'description' => 'Olatte Peach Can 240ml - Minuman rasa susu dan buah persik yang terbuat dari berbagai macam bahan berkualitas dan pilihan sehingga menghasilkan rasa yang pas di lidah. Disajikan dingin akan lebih nikmat, cocok untuk melepas dahaga di sela segudang aktifitas anda sehari-hari. Rasakan kesegaran Olatte Peach Can 240ml dan dapatkan produknya di sini',
+                'tag' => 'minuman',
+                'image' => '1_A7387630002168_20200527111824921_base.jpg',
+                'price' => 9400,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP20',
+                'name' => 'MY TEA Teh Oolong 450 ml',
+                'slug' => 'my-tea-teh-oolong-450-ml-762672',
+                'description' => 'MYTEA Teh Oolong PET 450ml merupakan teh siap minum yang diformulasi khusus untuk menyegarkan sekaligus mengatasi masalah lemak, membantu menjaga tubuh tetap fit, kulit tetap sehat, dan mengubah kalori menjadi tenaga. Tea Oolong MYTEA terbuat dari 100% teh Oolong alami yang berkhasiat melunturkan lemak dan membantu mengurangi penyerapan lemak oleh tubuh. Teh Oolong dibuat melalui proses oksidasi yang unik dan berbeda dari teh jenis lainnya, membuatnya memiliki kandungan antioksidan dari teh hijau dan teh hitam yang dapat meningkatkan metabolisme tubuh dan mencegah penuaan dini, memberikan proteksi tambahan terhadap perusakan sinar UV pada kulit, mencegah munculnya penyakit degenerative, melindungi gigi berlubang, serta meningkatkan ketajaman pikiran.',
+                'tag' => 'minuman',
+                'image' => '1_A7626720001001_20210202093723270_base.jpg',
+                'price' => 6700,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP21',
+                'name' => 'FRUIT TEA Minuman Teh X-Treme 500 ml',
+                'slug' => 'fruit-tea-minuman-teh-x-treme-500-ml-25068',
+                'description' => 'FRUIT TEA Minuman Teh X-Treme 500 ml adalah minuman teh kemasan yang diformulasi untuk menyegarkan tubuh dan semangat dalam menjalani aktivitas. Dibuat dari daun teh pilihan berkualitas dengan memadukan kombinasi rasa buah apel dan anggur segar yang akan memberikan ledakan sensasi segar yang unik dan istimewa. Praktis, mudah dibawa dan dinikmati kapan dan di mana saja saat haus melanda. Tersedia dalam kemasan botol PET 500 ml.',
+                'tag' => 'minuman',
+                'image' => '1_A12790006160_20220111093546476_base.jpg',
+                'price' => 7300,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP22',
+                'name' => 'Red Bull Energy Drink 250 ml',
+                'slug' => 'red-bull-energy-drink-250-ml-179021',
+                'description' => 'Red Bull Energy Drink 250 ml adalah minuman berenergi yang dapat Anda konsumsi di sela-sela kegiatan yang padat. Minuman berenergi ini terbuat dari berbagai bahan pilihan yang diproses secara modern. Minuman ini dapat mengembalikan energi dan tenaga Anda, sehingga dapat memberikan Anda konsentrasi lebih saat berkegiatan. Minuman ini hadir dalam kemasan yang lebih praktis, untuk kemudahan Anda saat ingin mengkonsumsinya.',
+                'tag' => 'minuman',
+                'image' => '1_A12630047609_20201113144333413_base.jpg',
+                'price' => 24600,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP23',
+                'name' => 'Buavita Jus Buah Asli Jambu 1 L',
+                'slug' => 'buavita-jus-buah-asli-jambu-1-l-178885',
+                'description' => 'Buavita Jus Buah Asli Jambu 1 L adalah salah satu varian jus buah jambu Buavita yang dibuat menggunakan buah alami yang dipilih berdasarkan standar kualitas Buavita untuk mendapatkan konsentrat buah yang menjadi bahan dasar minuman Buavita. Bulir-bulir buah dan konsentrat buah segar dicampur dengan kebaikan buah lainnya dan diproses menggunakan teknologi UHT yang menjamin kandungan vitamin dan nutrisi dari buah asli dalam kemasan Buavita tetap terjaga. Mengandung Vitamin A, B1, B2, B3, B6, juga sumber Vitamin C. Kandungan Vitamin C yang terkandung di dalamnya dapat berperan dalam membentuk dan pemeliharaan jaringan kolagen, membuat kulit senantiasa segar dan sehat. Nikmati segala kebaikan buah jambu untuk cukupi kebutuhan nutrisi tubuh dengan mengkonsumsi Buavita Jus Jambu. Tersedia dalam kemasan tetrapak 1 liter.',
+                'tag' => 'minuman',
+                'image' => '1_A12520808631_20220331232019141_base.jpg',
+                'price' => 32000,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP24',
+                'name' => 'EXTRA JOSS Active Minuman Suplemen Kesehatan 6 x 4,2 g',
+                'slug' => 'extra-joss-active-minuman-suplemen-kesehatan-6-x-42-g-53821',
+                'description' => 'EXTRA JOSS Active Minuman Suplemen Kesehatan 6 x 4,2 g adalah sebuah serbuk minuman berenergi. Dibuat dengan manfaat membantu menjaga energi dan stamina tubuh agar selalu fit dan bersemangat. Dalam extrajoss terdapat beberapa kandungan seperti royal jely, ginseng, kafein, dan vitamin B kompleks yang berperan sebagai sumber energi dan membantu menjaga stamina tubuh, serta membantu meningkatkan kinerja otak. Satu kemasan sachet ukuran 4,2 gram dapat dikonsumsi dengan cara dilarutkan pada 100 ml air. Maksimal dikonsumsi sebanyak 3 kemasan sachet dalam satu hari. Cocok diminum pada saat akan berolahraga atau saat akan melakukan aktivitas berat. Segera beli EXTRA JOSS Active Minuman Suplemen Kesehatan 6 x 4,2 g dan jadikan sebagai suplemen energi anda.',
+                'tag' => 'minuman',
+                'image' => '1_A17630253146_20200320144747596_base.jpg',
+                'price' => 6500,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP25',
+                'name' => 'KRATINGDAENG Energy Drink Botol 150 ml',
+                'slug' => 'kratingdaeng-energy-drink-botol-150-ml-14920',
+                'description' => 'KRATINGDAENG Energy Drink Botol 150 ml adalah sebuah produk minuman berenergi dalam kemasan. Dirancang khusus untuk membantu meningkatkan stamina serta menyegarkan tubuh dan pikiran. Dibuat dengan menggunakan bahan berkualitas yang diolah menggunakan teknologi modern. Selain untuk meningkatkan stamina, kratingdaeng juga dapat membantu meningkatkan fokus dan kewaspadaan. Memiliki rasa yang manis dengan sensasi rasa asam yang segar, dapat membantu meningkatkan dan memperbaiki mood. Dikemas secara khusus dalam kemasan botol kaca ukuran 150 ml. Cocok diminum saat akan melakukan aktivitas berat atau saat butuh meningkatkan fokus saat bekerja. Lebih nikmat jika diminum dalam kondisi dingin. Segera miliki KRATINGDAENG Energy Drink Botol 150 ml untuk membantu meningkatkan stamina anda.',
+                'tag' => 'minuman',
+                'image' => '1_A12630003501_20210708151453027_base.jpg',
+                'price' => 7200,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP26',
+                'name' => 'KRATINGDAENG Energy Drink Botol Super 150 ml',
+                'slug' => 'kratingdaeng-energy-drink-botol-super-150-ml--14921',
+                'description' => 'KRATINGDAENG Energy Drink Botol Super 150 ml adalah sebuah produk minuman berenergi dalam kemasan. Dirancang khusus untuk membantu meningkatkan stamina serta menyegarkan tubuh dan pikiran. Dibuat dengan menggunakan bahan berkualitas yang diolah menggunakan teknologi modern. Selain untuk meningkatkan stamina, kratingdaeng juga dapat membantu meningkatkan fokus dan kewaspadaan. Dengan kandungan tambahan berupa lysine dan choline, untuk semakin meningkatkan energi tubuh. Memiliki rasa yang manis dengan sensasi rasa asam yang segar, dapat membantu meningkatkan dan memperbaiki mood. Dikemas secara khusus dalam kemasan botol kaca ukuran 150 ml. Cocok diminum saat akan melakukan aktivitas berat atau saat butuh meningkatkan fokus saat bekerja. Lebih nikmat jika diminum dalam kondisi dingin. Segera miliki KRATINGDAENG Energy Drink Botol Super 150 ml untuk membantu meningkatkan stamina anda.',
+                'tag' => 'minuman',
+                'image' => '1_A12630003502_20210708151520133_base.jpg',
+                'price' => 8200,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP27',
+                'name' => 'KIRANTI Sehat Datang Bulan Juice Orange 150 ml',
+                'slug' => 'kiranti-sehat-datang-bulan-juice-orange-150-ml-14969',
+                'description' => 'KIRANTI Sehat Datang Bulan Juice Orange 150 ml adalah minuman jamu pereda nyeri saat haid. Diracik menggunakan ramuan tradisional yang berasal dari rempah rempah alami seperti kunyit, jahe, kencur, asam jawa, kayu manis, guarana, pandan, dan gula jawa. Rempah rempah diolah menggunakan teknologi modern dan proses yang higienis. Selain meredakan nyeri haid, kiranti juga dapat membantu melancarkan menstruasi, menghilangkan bau tubuh, dan memberikan kesegaran tubuh. Memiliki sensasi rasa asam manis yang segar, dengan aroma khas rempah rempahan, dengan ekstrak buah jeruk yang membantu menyeimbangkan rasa rempah. Dikemas dalam kemasan botol ukuran 150 ml. Dapat dikonsumsi sebanyak 1 hingga 2 botol dalam satu hari. Dianjurkan untuk mengocok botol terlebih dahulu sebelum diminum. Miliki KIRANTI Sehat Datang Bulan Juice Orange 150 ml untuk membantu meredakan datang bulan.',
+                'tag' => 'minuman',
+                'image' => '1_A12740003552_20210708151646853_base.jpg',
+                'price' => 7900,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP28',
+                'name' => 'Hemaviton C1000 Orange Less Sugar Can 330 ml',
+                'slug' => 'hemaviton--c1000-orange-less-sugar-can-330-ml-738765',
+                'description' => 'Hemaviton  C1000 Orange Less Sugar Can 330 ml adalah minuman suplemen vitamin C. Diformulasikan secara khusus untuk memenuhi kebutuhan vitamin C harian anda. Diproduksi secara modern menggunakan teknologi tinggi sehingga menghasilkan suplemen dengan kualitas tinggi. Dengan menggunakan buffered vitamin C yang memiliki tingkat keasaman yang redah, sehingga nyaman di lambung. Diperkaya dengan kandungan kolagen 1000 miligram yang baik untuk kesehatan kulit. Kolagen berasal dari ikan, sehingga aman untuk dikonsumsi dan halal. Memiliki rasa manis yang berasal dari stevia, sehingga memiliki kandungan gula yang rendah. Minuman memiliki sensasi rasa orange yang menyegarkan. Dikemas dalam kemasan kaleng khusus ukuran 330 ml. Segera beli hemaviton  C1000 Orange Less Sugar Can 330 ml untuk memenuhi kebutuhan vitamin C harian anda',
+                'tag' => 'minuman',
+                'image' => '1_A7387650002168_20210409202406957_base.jpg',
+                'price' => 6400,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP29',
+                'name' => 'Cap Kaki Tiga Larutan Penyegar Leci Kaleng 320 ml',
+                'slug' => 'cap-kaki-tiga-larutan-penyegar-leci-kaleng-320-ml-15825',
+                'description' => 'Cap Kaki Tiga Larutan Penyegar Leci Kaleng 320 ml adalah minuman kesehatan untuk meredakan panas dalam dan sakit tenggorokan. Menggunakan bahan alami dengan terpadat kandungan mineral didalamnya, yang baik untuk kesehatan tubuh. Diproses secara modern menggunakan teknologi tinggi, sehingga menghasilkan minuman yang bermanfaat untuk mencegah dan membantu menyebuhkan panas dalam, sakit tenggorokan, dan sariawan. Hadir dalam rasa ekstrak buah leci yang memiliki rasa manis dan menyegarkan. Minuman tidak memiliki bau dan warna, sehingga aman untuk dikonsumsi oleh seluruh kalangan. Dikemas secara khusus dalam kemasan kaleng ukuran 320 ml, yang cocok diminum untuk personal. Segera beli Cap Kaki Tiga Larutan Penyegar Leci Kaleng 320 ml untuk membantu meredakan panas dalam anda.',
+                'tag' => 'minuman',
+                'image' => '1_A12740004648_20200812140250759_base.jpg',
+                'price' => 7700,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'category_id' => 2,
+                'tag_id' => 'TMP30',
+                'name' => 'Hemaviton Energy Drink 150 ml',
+                'slug' => 'hemaviton-energy-drink-150-ml-14860',
+                'description' => 'Hemaviton Energy Drink 150 ml adalah minuman energi cair dengan kandungan Taurine, Ginseng Extract, dan Vitamin yang difomulasi mampu bereaksi dengan cepat sehingga menghasilkan energi instan bagi pria dan wanita yang aktif dan dinamis. Hemaviton Energy Drink dapat membantu menambah tenaga, menghilangkan kantuk dan mencegah lelah. Hemaviton Energy Drink diproduksi dengan peralatan modern dan higienis untuk menjaga kualitas dan rasa yang dimiiki. Minuman ini mengandung Taurine, Caffeine, dan Ekstrak Ginseng yang dipercaya dapat meningkatkan stamina dan kebugaran tubuh.',
+                'tag' => 'minuman',
+                'image' => 'A12630003427_A12630003427_20201007100356698_base.jpg',
+                'price' => 5900,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+        ]);
+
+        ProductLog::insert([
+            [
+                'distributor_id' => 6,
+                'agent_id' => 11,
+                'title' => 'Pengiriman Produk Ke-1',
+                'resi' => 'RSI' . date('His') . '1',
+                'status' => 'DIBUAT',
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'distributor_id' => 7,
+                'agent_id' => 11,
+                'title' => 'Pengiriman Produk Ke-2',
+                'resi' => 'RSI' . date('His') . '2',
+                'status' => 'DIBUAT',
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'distributor_id' => 8,
+                'agent_id' => 11,
+                'title' => 'Pengiriman Produk Ke-3',
+                'resi' => 'RSI' . date('His') . '3',
+                'status' => 'DIBUAT',
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ]
+        ]);
+
+        ProductLogItem::insert([
+            [
+                'product_log_id' => 1,
+                'product_id' => 1,
+                'amount' => 50,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 1,
+                'product_id' => 2,
+                'amount' => 70,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 1,
+                'product_id' => 3,
+                'amount' => 100,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 2,
+                'product_id' => 5,
+                'amount' => 125,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 2,
+                'product_id' => 8,
+                'amount' => 150,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 2,
+                'product_id' => 12,
+                'amount' => 25,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 2,
+                'product_id' => 15,
+                'amount' => 55,
+                'created_by'       => 2,
+                'created_at'       => Carbon::now()
+            ],
+            [
+                'product_log_id' => 2,
+                'product_id' => 17,
+                'amount' => 60,
+                'created_by'       => 2,
                 'created_at'       => Carbon::now()
             ],
         ]);
