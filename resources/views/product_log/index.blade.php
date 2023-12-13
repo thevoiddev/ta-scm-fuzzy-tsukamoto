@@ -6,8 +6,11 @@
             <h6 class="m-0 font-weight-bold text-success">{{ $main_content }}</h6>
         </div>
         <div class="card-body">
-            <button class="btn btn-success mb-3" data-toggle="modal" data-target="#AddProductLog"><i
-                    class="fas fa-plus mr-2"></i> Add {{ $main_content }}</button>
+            @if (session('user')['userable_type'] == App\Models\UserBusiness::class &&
+                    App\Models\UserBusiness::find(session('user')['userable_id'])->role == 'PRODUSEN')
+                <button class="btn btn-success mb-3" data-toggle="modal" data-target="#AddProductLog"><i
+                        class="fas fa-plus mr-2"></i> Add {{ $main_content }}</button>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="ProductLogDatatable" width="100%" cellspacing="0">
                     <thead>
@@ -18,6 +21,10 @@
                             <th>Distibutor</th>
                             <th>Agent</th>
                             <th>Status</th>
+                            @if (session('user')['userable_type'] == App\Models\UserBusiness::class &&
+                                    App\Models\UserBusiness::find(session('user')['userable_id'])->role == 'DISTRIBUTOR')
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -118,8 +125,47 @@
                     data: 'status',
                     name: 'status'
                 },
+                @if (session('user')['userable_type'] == App\Models\UserBusiness::class &&
+                        App\Models\UserBusiness::find(session('user')['userable_id'])->role == 'DISTRIBUTOR')
+                    {
+                        data: 'action',
+                        name: 'action'
+                    },
+                @endif
             ]
         });
+
+        @if (session('user')['userable_type'] == App\Models\UserBusiness::class &&
+                App\Models\UserBusiness::find(session('user')['userable_id'])->role == 'DISTRIBUTOR')
+            $('#ProductLogDatatable tbody').on('click', '.btn-action-send', function() {
+                var DataData = ProductLogDatatable.row($(this).parents('tr')).data();
+                if (DataData === undefined) DataData = ProductLogDatatable.row($(this)).data();
+
+                Swal.fire({
+                    title: 'Yakin ingin mengirim paket ini?',
+                    text: "Aksi ini tidak dapat dibatalkan.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#1cc88a',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, kirim!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: DataData.send_endpoint,
+                            type: DataData.send_method,
+                            success: function(response) {
+                                ProductLogDatatable.ajax.reload(null, false);
+                                Swal.fire('Info', response.message, 'success');
+                            },
+                            error: function(request, error) {
+                                Swal.fire('Info', request.responseJSON.message, 'info');
+                            }
+                        });
+                    }
+                });
+            });
+        @endif
 
         $('#AddProductLog').on('hidden.bs.modal', function(e) {
             const MODAL = $(e.currentTarget);

@@ -123,6 +123,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function () {
             Route::get('/datatable', 'datatable')->name('datatable');
             Route::post('/store', 'store')->name('store');
             Route::post('/{slug}/update', 'update')->name('update');
+            Route::post('/{resi}/send', 'send')->name('send');
             Route::delete('/{slug}/delete', 'delete')->name('delete');
         });
     });
