@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id');
             $table->string('tag_id')->unique();
             $table->string('name', 75);
             $table->string('slug', 125)->unique();
@@ -22,7 +23,6 @@ return new class extends Migration
             $table->text('tag');
             $table->text('image');
             $table->unsignedInteger('price');
-            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->dateTime('created_at')->nullable();
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('products');
     }
 };

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Portfolio;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\User;
 use App\Models\UserBusiness;
 
@@ -20,6 +22,8 @@ class DashboardController extends Controller
         $title = "$main_content -  $web_information->title";
         $business = UserBusiness::get();
         $user = User::get();
+        $product = Product::get();
+        $product_category = ProductCategory::get();
 
         return view('dashboard.index', compact(
             'web_information',
@@ -27,7 +31,9 @@ class DashboardController extends Controller
             'main_content',
             'title',
             'business',
-            'user'
+            'user',
+            'product',
+            'product_category'
         ));
     }
 }

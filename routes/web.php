@@ -7,6 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductLogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WebInformationController;
@@ -94,15 +97,35 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function () {
     //     });
     // });
 
-    // Route::group(['as' => 'post_category.', 'prefix' => 'post-category'], function () {
-    //     Route::controller(PostCategoryController::class)->group(function () {
-    //         Route::get('/', 'index')->name('index');
-    //         Route::get('/datatable', 'datatable')->name('datatable');
-    //         Route::post('/create', 'create')->name('create');
-    //         Route::post('/{id}/update', 'update')->name('update');
-    //         Route::delete('/{id}/delete', 'delete')->name('delete');
-    //     });
-    // });
+    Route::group(['as' => 'product_category.', 'prefix' => 'product-category'], function () {
+        Route::controller(ProductCategoryController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+
+    Route::group(['as' => 'product.', 'prefix' => 'product'], function () {
+        Route::controller(ProductController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+
+    Route::group(['as' => 'product_log.', 'prefix' => 'product-log'], function () {
+        Route::controller(ProductLogController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
 
     // Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
     //     Route::controller(NewsController::class)->group(function () {
