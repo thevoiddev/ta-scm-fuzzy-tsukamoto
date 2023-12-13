@@ -10,6 +10,7 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WebInformationController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +33,7 @@ Route::group(['as' => 'auth.', 'prefix' => 'portal/auth'], function () {
     });
 });
 
-Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
+Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function () {
     Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function () {
         Route::controller(DashboardController::class)->group(function () {
             Route::get('/', 'index')->name('index');
@@ -58,6 +59,8 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
             Route::post('/store-scanner', 'store_scanner')->name('store_scanner');
+            Route::post('/store-office', 'store_office')->name('store_office');
+            Route::post('/store-employee', 'store_employee')->name('store_employee');
             Route::get('/datatable', 'datatable')->name('datatable');
             Route::get('{slug}/office-datatable', 'office_datatable')->name('office_datatable');
             Route::get('{slug}/employee-datatable', 'employee_datatable')->name('employee_datatable');
@@ -77,7 +80,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
             Route::delete('/{slug}/delete', 'delete')->name('delete');
         });
     });
-    
+
     // Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
     //     Route::controller(PostController::class)->group(function () {
     //         Route::get('/', 'index')->name('index');
@@ -89,7 +92,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
     //         Route::delete('/{id}/delete', 'delete')->name('delete');
     //     });
     // });
-    
+
     // Route::group(['as' => 'post_category.', 'prefix' => 'post-category'], function () {
     //     Route::controller(PostCategoryController::class)->group(function () {
     //         Route::get('/', 'index')->name('index');
@@ -99,7 +102,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
     //         Route::delete('/{id}/delete', 'delete')->name('delete');
     //     });
     // });
-    
+
     // Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
     //     Route::controller(NewsController::class)->group(function () {
     //         Route::get('/', 'index')->name('index');
@@ -111,7 +114,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
     //         Route::delete('/{id}/delete', 'delete')->name('delete');
     //     });
     // });
-    
+
     // Route::group(['as' => 'news_category.', 'prefix' => 'news-category'], function () {
     //     Route::controller(NewsCategoryController::class)->group(function () {
     //         Route::get('/', 'index')->name('index');
@@ -121,7 +124,7 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function(){
     //         Route::delete('/{id}/delete', 'delete')->name('delete');
     //     });
     // });
-    
+
     // Route::group(['as' => 'slider.', 'prefix' => 'slider'], function () {
     //     Route::controller(SliderController::class)->group(function () {
     //         Route::get('/', 'index')->name('index');
