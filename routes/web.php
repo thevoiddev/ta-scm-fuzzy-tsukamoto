@@ -6,11 +6,15 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\PointOfSalesController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductEtalaseController;
 use App\Http\Controllers\ProductLogController;
+use App\Http\Controllers\ProductWarehouseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesHistoryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WebInformationController;
 use Illuminate\Http\Request;
@@ -119,6 +123,50 @@ Route::group(['prefix' => 'portal', 'middleware' => 'signin'], function () {
 
     Route::group(['as' => 'product_log.', 'prefix' => 'product-log'], function () {
         Route::controller(ProductLogController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::post('/{resi}/send', 'send')->name('send');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+
+    Route::group(['as' => 'product_warehouse.', 'prefix' => 'product-warehouse'], function () {
+        Route::controller(ProductWarehouseController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::post('/{resi}/send', 'send')->name('send');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+
+    Route::group(['as' => 'product_etalase.', 'prefix' => 'product-etalase'], function () {
+        Route::controller(ProductEtalaseController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::post('/{resi}/send', 'send')->name('send');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+
+    Route::group(['as' => 'sales_history.', 'prefix' => 'sales-history'], function () {
+        Route::controller(SalesHistoryController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/datatable', 'datatable')->name('datatable');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{slug}/update', 'update')->name('update');
+            Route::post('/{resi}/send', 'send')->name('send');
+            Route::delete('/{slug}/delete', 'delete')->name('delete');
+        });
+    });
+
+    Route::group(['as' => 'point_of_sales.', 'prefix' => 'point-of-sales'], function () {
+        Route::controller(PointOfSalesController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/datatable', 'datatable')->name('datatable');
             Route::post('/store', 'store')->name('store');
